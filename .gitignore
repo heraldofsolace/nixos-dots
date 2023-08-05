@@ -13,3 +13,4 @@ result
 # nixago-auto-created: mdbook-build-folder
 docs/build/**
 .data
+cells/common/packages/_files/PI-linux-x64-*.tar.xz
