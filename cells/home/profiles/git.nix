@@ -38,7 +38,7 @@
     ];
 
     extraConfig = {
-      init.defaultBranch = "master";
+      init.defaultBranch = "main";
       pretty.custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)";
 
       pull.rebase = false;
@@ -63,7 +63,21 @@
     ];
 
     aliases = {
-      git = "!exec git";
+      a = "add -p";
+      co = "checkout";
+      cob = "checkout -b";
+      f = "fetch -p";
+      c = "commit";
+      p = "push";
+      ba = "branch -a";
+      bd = "branch -d";
+      bD = "branch -D";
+      d = "diff";
+      dc = "diff --cached";
+      ds = "diff --staged";
+      r = "restore";
+      rs = "restore --staged";
+      st = "status -sb";
 
       # reset
       soft = "reset --soft";

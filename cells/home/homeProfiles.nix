@@ -8,7 +8,7 @@ in
   haumea.lib.load {
     src = ./profiles;
     # loader = haumea.lib.loaders.path;
-    # transformer = haumea.lib.transformers.liftDefault;
+    transformer = haumea.lib.transformers.liftDefault;
     inputs = {
       common = inputs.cells.common.commonProfiles;
       inherit cell inputs;

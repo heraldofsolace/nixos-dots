@@ -109,13 +109,6 @@ in {
       options = "--delete-older-than 7d";
     };
 
-    # Generally useful nix option defaults
-    extraOptions = let
-      GB = 1024 * 1024 * 1024;
-    in ''
-      min-free = ${toString (5 * GB)}
-    '';
-
     nixPath = [
       "nixpkgs=flake:nixos"
       "home-manager=flake:home"

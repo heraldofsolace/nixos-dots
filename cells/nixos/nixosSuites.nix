@@ -12,8 +12,9 @@ in
     base = _: {
       imports = [
         profiles.core
-        users.truelecter
+        users.aniket
         users.root
+        users.hass
         inputs.cells.secrets.nixosProfiles.secrets
       ];
     };

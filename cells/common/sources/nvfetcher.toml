@@ -9,3 +9,7 @@ fetch.github = "tfutils/tfenv"
 [s5cmd]
 src.git = "https://github.com/peak/s5cmd"
 fetch.github = "peak/s5cmd"
+
+[manix]
+src.git = "https://github.com/mlvzk/manix"
+fetch.github = "mlvzk/manix"

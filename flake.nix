@@ -1,6 +1,10 @@
 {
   description = "The Hive - The secretly open NixOS-Society";
 
+  nixConfig.extra-experimental-features = "nix-command flakes";
+  nixConfig.extra-substituters = "https://nrdxp.cachix.org https://nix-community.cachix.org";
+  nixConfig.extra-trusted-public-keys = "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
+
   # common for deduplication
   inputs = {
     flake-utils = {
@@ -56,15 +60,6 @@
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
-    nixos-wsl = {
-      # url = "github:divnix/hive?ref=refs/pull/9/head"
-      url = "github:nix-community/NixOS-WSL?ref=refs/pull/243/merge";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
-
     colmena = {
       url = "github:zhaofengli/colmena";
       inputs = {
@@ -73,12 +68,54 @@
       };
     };
 
-    sops-nix = {
-      url = "github:TrueLecter/sops-nix/darwin";
+    agenix = {
+      url = "github:ryantm/agenix";
       inputs = {
-        nixpkgs.follows = "nixos";
+        nixpkgs.follows = "nixpkgs";
       };
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    deploy = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nvfetcher = {
+      url = "github:berberman/nvfetcher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    naersk = {
+      url = "github:nmattia/naersk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    comma = {
+      url = "github:nix-community/comma";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    homeage = {
+      url = "github:jordanisaacs/homeage";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    grub2-themes = {
+      url = github:vinceliuice/grub2-themes;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
+    nur.url = github:nix-community/NUR;
   };
 
   # nixpkgs & home-manager
@@ -88,14 +125,9 @@
     nixos.url = "github:nixos/nixpkgs/release-23.05";
     nixpkgs.follows = "nixos";
 
-    darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixos";
-    };
-
     home = {
       url = "github:nix-community/home-manager/release-23.05";
-      inputs.nixpkgs.follows = "nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -146,20 +178,17 @@
 
         # Modules
         (functions "nixosModules")
-        (functions "darwinModules")
         (functions "homeModules")
 
         # Profiles
         (functions "commonProfiles")
         (functions "nixosProfiles")
-        (functions "darwinProfiles")
         (functions "homeProfiles")
         (functions "userProfiles")
         (functions "users")
 
         # Suites
         (functions "nixosSuites")
-        (functions "darwinSuites")
         (functions "homeSuites")
 
         (devshells "shells")
@@ -199,11 +228,8 @@
       colmenaHive = hive.collect self "colmenaConfigurations";
       nixosConfigurations = hive.collect self "nixosConfigurations";
       homeConfigurations = hive.collect self "homeConfigurations";
-      darwinConfigurations = hive.collect self "darwinConfigurations";
     }
     {
-      darwinConfigurations.squadbook = self.darwinConfigurations.darwin-squadbook;
-
       debug = hive.harvest inputs.self ["repo" "debug"];
     };
 }

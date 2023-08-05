@@ -11,7 +11,10 @@
   sources = nixpkgs.callPackage ./sources/generated.nix {};
 in
   l.mapAttrs (
-    _: v: nixpkgs.callPackage v {inherit sources;}
+    _: v:
+      if v == ./packages/pixinsight.nix
+      then nixpkgs.libsForQt5.callPackage v {inherit sources;}
+      else nixpkgs.callPackage v {inherit sources;}
   )
   (
     haumea.lib.load {

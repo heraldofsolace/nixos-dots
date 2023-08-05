@@ -95,7 +95,7 @@ in
         config.editorconfig
         config.githubsettings
         config.lefthook
-        # config.mdbook
+        config.mdbook
       ];
 
       packages = [

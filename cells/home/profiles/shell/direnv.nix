@@ -1,10 +1,4 @@
-{
-  xdg.configFile."direnv/direnv.toml".text = ''
-    [global]
-    warn_timeout = "2m"
-
-  '';
-
+_: _: {
   programs.direnv = {
     enable = true;
     nix-direnv = {

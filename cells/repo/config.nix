@@ -26,6 +26,23 @@ in {
         max_line_length = "off";
         trim_trailing_whitespace = false;
       };
+      "**.age" = {
+        end_of_line = "unset";
+        insert_final_newline = "unset";
+        trim_trailing_whitespace = "unset";
+        charset = "unset";
+        indent_style = "unset";
+        indent_size = "unset";
+      };
+
+      "**.lua" = {
+        end_of_line = "unset";
+        insert_final_newline = "unset";
+        trim_trailing_whitespace = "unset";
+        charset = "unset";
+        indent_style = "unset";
+        indent_size = "unset";
+      };
     };
   };
 
@@ -106,11 +123,11 @@ in {
   githubsettings = mkNixago std.lib.cfg.githubsettings {
     data = {
       repository = {
-        name = "hive";
+        name = "nix-dots";
         inherit (import (inputs.self + /flake.nix)) description;
         # homepage = "CONFIGURE-ME";
         # topics = "CONFIGURE-ME";
-        default_branch = "master";
+        default_branch = "main";
         allow_squash_merge = true;
         allow_merge_commit = true;
         allow_rebase_merge = false;
@@ -156,29 +173,29 @@ in {
     };
   };
 
-  # # Tool Homepage: https://rust-lang.github.io/mdBook/
-  # mdbook = std.lib.cfg.mdbook {
-  #   # add preprocessor packages here
-  #   packages = [
-  #     inputs.nixpkgs.mdbook-linkcheck
-  #   ];
-  #   data = {
-  #     # Configuration Reference: https://rust-lang.github.io/mdBook/format/configuration/index.html
-  #     book = {
-  #       language = "en";
-  #       multilingual = false;
-  #       title = "CONFIGURE-ME";
-  #       src = "docs";
-  #     };
-  #     build.build-dir = "docs/build";
-  #     preprocessor = {};
-  #     output = {
-  #       html = {};
-  #       # Tool Homepage: https://github.com/Michael-F-Bryan/mdbook-linkcheck
-  #       linkcheck = {};
-  #     };
-  #   };
-  #   output = "book.toml";
-  #   hook.mode = "copy"; # let CI pick it up outside of devshell
-  # };
+  # Tool Homepage: https://rust-lang.github.io/mdBook/
+  mdbook = mkNixago std.lib.cfg.mdbook {
+    # add preprocessor packages here
+    packages = [
+      inputs.nixpkgs.mdbook-linkcheck
+    ];
+    data = {
+      # Configuration Reference: https://rust-lang.github.io/mdBook/format/configuration/index.html
+      book = {
+        language = "en";
+        multilingual = false;
+        title = "CONFIGURE-ME";
+        src = "docs";
+      };
+      build.build-dir = "docs/build";
+      preprocessor = {};
+      output = {
+        html = {};
+        # Tool Homepage: https://github.com/Michael-F-Bryan/mdbook-linkcheck
+        linkcheck = {};
+      };
+    };
+    output = "book.toml";
+    hook.mode = "copy"; # let CI pick it up outside of devshell
+  };
 }

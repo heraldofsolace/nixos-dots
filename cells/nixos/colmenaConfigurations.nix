@@ -5,11 +5,6 @@
   inherit (inputs) haumea nixpkgs;
   l = nixpkgs.lib // builtins;
   hosts = cell.nixosConfigurations;
-  overrides = {
-    depsos = {
-      deployment.targetPort = 2265;
-    };
-  };
 in
   l.mapAttrs
   (
@@ -21,7 +16,7 @@ in
           deployment = {
             targetHost = name;
             targetPort = 22;
-            targetUser = "truelecter";
+            targetUser = "aniket";
           };
         }
         (
