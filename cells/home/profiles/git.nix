@@ -1,9 +1,12 @@
-{
+_: {pkgs, ...}: {
   programs.git = {
     enable = true;
 
     delta.enable = true;
     lfs.enable = true;
+
+    userName = "Aniket Bhattacharyea";
+    userEmail = "aniket@abhattacharyea.dev";
 
     ignores = [
       # Linux
@@ -45,6 +48,10 @@
       push.followTags = true;
 
       user.useConfigOnly = true;
+      user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA3GRcKkyXAJvKjyovyzkPzV9aaT7FRBSbnR1t1bmwqP";
+      gpg.format = "ssh";
+      "gpg \"ssh\"".program = "${pkgs._1password-gui}/share/1password/op-ssh-sign";
+      commit.gpgsign = true;
 
       core = {
         abbrev = 12;
