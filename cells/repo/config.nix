@@ -166,6 +166,7 @@ in {
           ];
           scopes = [
             "ci"
+            "docs"
           ];
           descriptionLength = 72;
         };
@@ -184,7 +185,7 @@ in {
       book = {
         language = "en";
         multilingual = false;
-        title = "CONFIGURE-ME";
+        title = "My NixOS Configuration";
         src = "docs";
       };
       build.build-dir = "docs/build";

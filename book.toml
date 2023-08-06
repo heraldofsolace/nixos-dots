@@ -2,7 +2,7 @@
 language = "en"
 multilingual = false
 src = "docs"
-title = "CONFIGURE-ME"
+title = "My NixOS Configuration"
 
 [build]
 build-dir = "docs/build"
