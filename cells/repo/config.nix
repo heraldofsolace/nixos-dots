@@ -123,10 +123,8 @@ in {
   githubsettings = mkNixago std.lib.cfg.githubsettings {
     data = {
       repository = {
-        name = "nix-dots";
+        name = "nixos-dots";
         inherit (import (inputs.self + /flake.nix)) description;
-        # homepage = "CONFIGURE-ME";
-        # topics = "CONFIGURE-ME";
         default_branch = "main";
         allow_squash_merge = true;
         allow_merge_commit = true;

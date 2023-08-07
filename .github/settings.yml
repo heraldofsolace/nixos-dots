@@ -4,10 +4,10 @@ repository:
   allow_squash_merge: true
   default_branch: main
   delete_branch_on_merge: true
-  description: The Hive - The secretly open NixOS-Society
+  description: My NixOS dotfiles
   has_downloads: false
   has_issues: true
   has_projects: false
   has_wiki: true
-  name: nix-dots
+  name: nixos-dots
   private: false

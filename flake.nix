@@ -1,5 +1,5 @@
 {
-  description = "The Hive - The secretly open NixOS-Society";
+  description = "My NixOS dotfiles";
 
   nixConfig.extra-experimental-features = "nix-command flakes";
   nixConfig.extra-substituters = "https://nrdxp.cachix.org https://nix-community.cachix.org";
