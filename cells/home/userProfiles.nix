@@ -39,6 +39,7 @@
       dev.python
       dev.node
       dev.rust
+      dev.go
     ];
 
     develop-gui = [

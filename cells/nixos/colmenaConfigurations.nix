@@ -5,6 +5,8 @@
   inherit (inputs) haumea nixpkgs;
   l = nixpkgs.lib // builtins;
   hosts = cell.nixosConfigurations;
+  overrides = {
+  };
 in
   l.mapAttrs
   (
