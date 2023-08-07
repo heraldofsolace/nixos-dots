@@ -26,4 +26,12 @@ _: {pkgs, ...}: {
       universal-ctags
       ctagsWrapped.ctagsWrapped
     ];
+
+  programs.command-not-found = {
+    enable = true;
+  };
+
+  programs.zathura = {
+    enable = true;
+  };
 }
