@@ -133,9 +133,9 @@ in {
         allow_rebase_merge = false;
         delete_branch_on_merge = true;
         private = false;
-        has_issues = false;
+        has_issues = true;
         has_projects = false;
-        has_wiki = false;
+        has_wiki = true;
         has_downloads = false;
       };
     };
