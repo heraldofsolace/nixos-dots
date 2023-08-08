@@ -21,6 +21,7 @@ _: {pkgs, ...}: {
       imagemagick
       gitAndTools.hub
       xclip
+      just
     ]
     ++ lib.optionals (pkgs.system != "aarch64-linux") [
       universal-ctags

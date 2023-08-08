@@ -25,6 +25,11 @@
       mcfly
       thefuck
       zoxide
+      less
+      navi
+      nushell
+      pywal
+      sagemath
     ];
 
     develop = [
