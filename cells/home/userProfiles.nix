@@ -50,6 +50,7 @@
     develop-gui = [
       editors.vscode
       editors.ides.jetbrains
+      editors.emacs
     ];
 
     android = [dev.android];

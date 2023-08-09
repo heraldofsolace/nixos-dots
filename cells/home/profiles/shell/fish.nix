@@ -61,9 +61,6 @@ _: {
 
       # bat
       cat = "bat --style header --style snip --style changes";
-
-      # exa
-      ls = "exa";
     };
 
     plugins = with import ./_files/fishPlugins/generated.nix pkgs; [
