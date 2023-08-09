@@ -6,6 +6,9 @@
   l = nixpkgs.lib // builtins;
   hosts = cell.nixosConfigurations;
   overrides = {
+    andromeda = {
+      deployment.allowLocalDeployment = true;
+    };
   };
 in
   l.mapAttrs

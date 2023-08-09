@@ -64,7 +64,7 @@ in {
   };
 
   networking.interfaces.enp6s0.wakeOnLan.enable = true;
-
+  networking.hostName = "andromeda";
   services = {
     geoclue2.enable = true;
     gnome.gnome-keyring.enable = true;
