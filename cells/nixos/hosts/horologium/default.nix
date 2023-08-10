@@ -21,6 +21,23 @@ in {
     ./_hardware-configuration.nix
   ];
 
+  bee.system = system;
+  bee.home = inputs.home;
+  bee.pkgs = import inputs.nixos {
+    inherit system;
+    config.allowUnfree = true;
+    overlays = with inputs.cells.common.overlays; [
+      common-packages
+      latest-overrides
+      nur
+      nvfetcher
+      agenix
+    ];
+    config.permittedInsecurePackages = [
+      "qtwebkit-5.212.0-alpha4"
+    ];
+  };
+
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
@@ -49,10 +66,12 @@ in {
     EDITOR = "vim";
   };
 
+  networking.hostName = "horologium";
+
   services.openssh = {
     enable = true;
-    PermitRootLogin = "no";
-    PasswordAuthentication = false;
+    settings.PermitRootLogin = "no";
+    settings.PasswordAuthentication = false;
   };
 
   services.xserver = {
