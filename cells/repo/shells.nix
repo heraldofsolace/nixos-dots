@@ -12,6 +12,7 @@
     cachix
     nix-index
     statix
+    earthly
     nvfetcher
     ;
 
@@ -111,6 +112,7 @@ in
         (nix statix)
 
         (infra sops)
+        (infra earthly)
         (infra inputs.colmena.packages.colmena)
         (infra inputs.home.packages.home-manager)
         (infra inputs.nixos-generators.packages.nixos-generate)

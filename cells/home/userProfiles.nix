@@ -36,6 +36,7 @@
       dev.aws
       dev.k8s
       dev.terraform
+      dev.build-systems
     ];
 
     develop-langs = [
