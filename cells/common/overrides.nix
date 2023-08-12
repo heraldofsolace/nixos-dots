@@ -37,5 +37,6 @@ in {
     tailscale
     ffmpeg_5-full
     earthly
+    jetbrains
     ;
 }
