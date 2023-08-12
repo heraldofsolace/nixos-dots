@@ -8,6 +8,7 @@
     base = [
       shell.direnv
       git
+      shell.bash
       shell.fish
       shell.tmux
       shell.exa
