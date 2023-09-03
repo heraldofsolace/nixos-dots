@@ -13,6 +13,7 @@
       shell.tmux
       shell.exa
       shell.bat
+      shell.gpg
       editors.nvim
       home-manager-base
       ssh
