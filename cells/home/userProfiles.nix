@@ -99,6 +99,7 @@ in {
     imports = with suites;
       l.flatten [
         develop
+        develop-langs
         inputs.nixos-vscode-server.homeModules.default
       ];
   };
