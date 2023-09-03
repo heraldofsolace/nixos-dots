@@ -7,7 +7,7 @@
   system = "x86_64-linux";
 in {
   imports = [
-    suites.base
+    suites.miranda
     profiles.docker
     profiles.misc.op
     profiles.networking.common
@@ -50,7 +50,7 @@ in {
     settings.PermitRootLogin = "no";
     settings.PasswordAuthentication = false;
   };
-  
+
   security.polkit.enable = true;
 
   system.stateVersion = "22.05";
