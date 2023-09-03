@@ -10,7 +10,7 @@ _: {pkgs, ...}: {
         # https-everywhere
         privacy-badger
         bitwarden
-        anonaddy
+        addy_io
         buster-captcha-solver
         c-c-search-extension
         consent-o-matic
