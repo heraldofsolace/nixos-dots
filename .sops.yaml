@@ -2,6 +2,7 @@ keys:
   - &aniket bdef09375e39dea3e1deb2976d90062cbe988b66
   - &andromeda a09192f027cefdb180fd17cba20a92d668313db4
   - &horologium daca14f2518b4ea3899fc1131d202afcaa8b230d
+  - &miranda: 8874df70867d57b271e72fe0d6848d48bedecccd
 creation_rules:
   - path_regex: secrets/sops/[^/]+\.yaml$
     key_groups:
@@ -9,3 +10,4 @@ creation_rules:
           - *aniket
           - *andromeda
           - *horologium
+          - *miranda
