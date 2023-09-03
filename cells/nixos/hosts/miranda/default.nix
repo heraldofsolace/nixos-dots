@@ -9,7 +9,6 @@ in {
   imports = [
     suites.miranda
     profiles.docker
-    profiles.misc.op
     profiles.networking.common
     profiles.networking.samba
     profiles.security.sudo
