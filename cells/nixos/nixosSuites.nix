@@ -18,4 +18,12 @@ in
         inputs.cells.secrets.nixosProfiles.secrets
       ];
     };
+    miranda = _: {
+      imports = [
+        profiles.core
+        users.aniket-miranda
+        users.root
+        inputs.cells.secrets.nixosProfiles.secrets
+      ];
+    };
   }

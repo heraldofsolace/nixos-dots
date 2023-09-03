@@ -44,6 +44,40 @@ in {
       };
     };
 
+    aniket-miranda = {
+      pkgs,
+      config,
+      ...
+    }: {
+      home-manager.users.aniket-miranda = _: {
+        imports = with userProfiles;
+          [minimal server-dev] ++ modulesImportables;
+        programs.git.extraConfig = {
+          extraConfig = {
+            pull.rebase = false;
+            user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA3GRcKkyXAJvKjyovyzkPzV9aaT7FRBSbnR1t1bmwqP";
+            gpg.format = "ssh";
+            commit.gpgsign = true;
+          };
+        };
+
+        home.stateVersion = "23.05";
+      };
+
+      users.users.aniket-miranda = {
+        passwordFile = config.sops.secrets.aniket-password.path;
+        description = "Aniket Bhattacharyea";
+        isNormalUser = true;
+        uid = 1000;
+        extraGroups = ["wheel" "docker" "plugdev" "i2c"];
+        shell = pkgs.bash; # bash as default shell to keep myself sane. In interactive mode, bash drops into fish
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA3GRcKkyXAJvKjyovyzkPzV9aaT7FRBSbnR1t1bmwqP"
+          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCrWDTKOYQ8HmWvmB8KI8rQBBIVsHdtFt0l3a3Y/D0Em+8sOTp86IFAi0RqFjlQabvaNGvYH2djCj57dnWQ5bOEF2EGbQ7dqON0i5RSKiIGpw+aSY58LueNK6Ht7dVGHMvRbDQMbLwxh8zbaxooVnLdG39zWSEKe8xS9fBw4Ym6E1Z8egcYYCGze2J+M3DOwj6/YIEpYOA1QQr60wPld6yfDsENdMk09G1uJp/ZI/Zz0a7DkCBtIQTz80yTvJSRCYDIfCNKqApa6NXTU9hqS7LoAxgAxb8jduO2b3JseRPhxGvS9wcuBIYRKZAOX5fmTVSqqFPox21gSn7yGGFJgiOeFZ3PCQXoimebRcTEiaffwcu7HE58ZT57ly5FVhQvJ6AIag2FjdExJqz5A6WYEaQFFPcJBZno2uaayGxzOYGzaCG6wbNR28HkvVf0wF2XiaHvtWCAAcYJ7f17cEtkCptYQQOnZ4tjFGaDmuKXRYFV4Kz79ceca9kYlY5bM3U+qyk= aniket@andromeda"
+        ];
+      };
+    };
+
     hass = {
       pkgs,
       config,
