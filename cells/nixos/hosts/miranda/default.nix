@@ -31,10 +31,10 @@ in {
   };
 
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.enable = true;
   boot.loader.grub.copyKernels = true;
   boot.loader.grub.efiSupport = true;
-  boot.loader.grub.enableCryptodisk = true;
   boot.loader.grub.efiInstallAsRemovable = true;
   boot.loader.grub.device = "nodev";
 
