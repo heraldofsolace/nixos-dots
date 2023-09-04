@@ -9,8 +9,7 @@ in {
   imports = [
     suites.miranda
     profiles.docker
-    profiles.networking.common
-    profiles.networking.samba
+    profiles.networking.server
     profiles.networking.tailscale
     profiles.security.sudo
     profiles.services.postgres
