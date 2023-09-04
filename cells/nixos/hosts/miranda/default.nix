@@ -11,6 +11,7 @@ in {
     profiles.docker
     profiles.networking.common
     profiles.networking.samba
+    profiles.networking.tailscale
     profiles.security.sudo
     profiles.services.postgres
     ./_hardware-configuration.nix

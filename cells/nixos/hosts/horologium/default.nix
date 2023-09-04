@@ -14,6 +14,7 @@ in {
     profiles.misc.op
     profiles.networking.common
     profiles.networking.samba
+    profiles.networking.tailscale
     profiles.security.sudo
     profiles.services.postgres
     profiles.services.virtualbox

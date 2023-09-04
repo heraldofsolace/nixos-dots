@@ -7,8 +7,8 @@
     package = inputs.cells.common.overrides.tailscale;
   };
 
-  # tl.services.tailscale-autoconnect = {
-  #   enable = true;
-  #   authFile = config.sops.secrets.tailscale-key.path;
-  # };
+  tl.services.tailscale-autoconnect = {
+    enable = true;
+    authFile = config.sops.secrets.tailscale-key.path;
+  };
 }

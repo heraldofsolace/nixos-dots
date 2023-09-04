@@ -26,6 +26,11 @@
         sopsFile = ./sops/user-passwords.yaml;
         neededForUsers = true;
       };
+
+      tailscale-key = {
+        key = "tailscale";
+        sopsFile = ./sops/keys.yaml;
+      };
     };
   };
 }
