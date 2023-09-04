@@ -5,10 +5,11 @@ _: {
 }: {
   systemd.network.enable = true;
 
-  systemd.network.networks."50-enp9s0" = {
+  systemd.network.networks."10-enp9s0" = {
     matchConfig.Name = "enp9s0";
     # acquire a DHCP lease on link up
     networkConfig.DHCP = "ipv4";
+    networkConfig.IPv6AcceptRA = false;
     linkConfig.RequiredForOnline = "routable";
   };
   networking.hosts = {
