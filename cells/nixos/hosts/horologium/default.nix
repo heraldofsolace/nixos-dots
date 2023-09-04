@@ -67,6 +67,11 @@ in {
     EDITOR = "vim";
   };
 
+  environment.systemPackages = with inputs.nixpkgs; [
+    maliit-keyboard
+    maliit-framework
+  ];
+
   networking.hostName = "horologium";
 
   services.openssh = {
