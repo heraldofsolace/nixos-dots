@@ -16,7 +16,7 @@ in {
     }: {
       home-manager.users.aniket = _: {
         imports = with userProfiles;
-          [workstation gui] ++ modulesImportables;
+          [workstation gui vscode-server] ++ modulesImportables;
         programs.git.extraConfig = {
           extraConfig = {
             pull.rebase = false;

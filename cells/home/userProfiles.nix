@@ -56,6 +56,10 @@
       editors.emacs
     ];
 
+    develop-server = [
+      editors.vscode-server
+    ];
+
     android = [dev.android];
 
     gui-apps = [
@@ -100,9 +104,18 @@ in {
       l.flatten [
         develop
         develop-langs
+        develop-server
         inputs.nixos-vscode-server.homeModules.default
       ];
   };
+  vscode-server = {...}: {
+    imports = with suites;
+      l.flatten [
+        develop-server
+        inputs.nixos-vscode-server.homeModules.default
+      ];
+  };
+
   gui = {...}: {
     imports = with suites;
       l.flatten [
