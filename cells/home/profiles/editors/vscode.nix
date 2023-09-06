@@ -17,6 +17,8 @@ in {
         ms-python.python
         mikestead.dotenv
         ms-vscode.cpptools
+        ms-vscode-remote.remote-ssh
+        ms-vscode-remote.remote-ssh-edit
         ms-pyright.pyright
         jnoortheen.nix-ide
         yzhang.markdown-all-in-one
