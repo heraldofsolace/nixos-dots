@@ -6,6 +6,7 @@ _: {pkgs, ...}: {
   networking.firewall.allowedUDPPorts = [
     3702 # wsdd
   ];
+  networking.firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
   services.samba = {
     enable = true;
     securityType = "user";
