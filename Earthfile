@@ -17,3 +17,9 @@ build-host:
 
 build-andromeda:
     BUILD build-host --HOST=andromeda
+
+build-horologium:
+    BUILD build-host --HOST=horologium
+
+build-miranda:
+    BUILD build-host --HOST=miranda

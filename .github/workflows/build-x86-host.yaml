@@ -1,4 +1,5 @@
-name: Build x86 host
+name: Build X86 host
+
 on:
   workflow_call:
     inputs:
@@ -8,23 +9,24 @@ on:
     secrets:
       CACHIX_AUTH_TOKEN:
         required: true
+
 jobs:
-  build_system:
+  build-system:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Install Nix
-        uses: cachix/install-nix-action@v20
-        with:
-          nix_path: nixpkgs=channel:nixos-23.05
-          extra_nix_config: |
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-      - uses: cachix/cachix-action@v12
-        with:
-          name: heraldofsolace
-          extraPullNames: cuda-maintainers, mic92, nix-community, nrdxp
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - name: Build system configuration
-        run: |
-          nix build ".#nixosConfigurations.${{ inputs.configuration }}.config.system.build.toplevel"
+    - uses: actions/checkout@v3
+    - name: Put back the git branch into git (Earthly uses it for tagging)
+      run: |
+        branch=""
+        if [ -n "$GITHUB_HEAD_REF" ]; then
+          branch="$GITHUB_HEAD_REF"
+        else
+          branch="${GITHUB_REF##*/}"
+        fi
+        git checkout -b "$branch" || true
+    - name: Download latest earthly
+      run: "sudo /bin/sh -c 'wget https://github.com/earthly/earthly/releases/download/v0.7.17/earthly-linux-amd64 -O /usr/local/bin/earthly && chmod +x /usr/local/bin/earthly'"
+    - name: Earthly version
+      run: earthly --version
+    - name: Run build
+      run: earthly --secret CACHIX_AUTH_TOKEN=${{ CACHIX_AUTH_TOKEN }} --ci +build-${{ inputs.configuration }}
