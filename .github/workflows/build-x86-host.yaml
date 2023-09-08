@@ -29,4 +29,4 @@ jobs:
     - name: Earthly version
       run: earthly --version
     - name: Run build
-      run: earthly --secret CACHIX_AUTH_TOKEN=${{ CACHIX_AUTH_TOKEN }} --ci +build-${{ inputs.configuration }}
+      run: earthly --secret CACHIX_AUTH_TOKEN=${{ secrets.CACHIX_AUTH_TOKEN }} --ci +build-${{ inputs.configuration }}
