@@ -16,10 +16,10 @@ build-host:
     RUN --secret CACHIX_AUTH_TOKEN -- cachix watch-exec heraldofsolace  --compression-method xz --compression-level 9 --jobs 2  -- $NIX build ".#nixosConfigurations.$HOST.config.system.build.toplevel"
 
 build-nixos-andromeda:
-    BUILD build-host --HOST=nixos-andromeda
+    BUILD +build-host --HOST=nixos-andromeda
 
 build-nixos-horologium:
-    BUILD build-host --HOST=nixos-horologium
+    BUILD +build-host --HOST=nixos-horologium
 
 build-nixos-miranda:
-    BUILD build-host --HOST=nixos-miranda
+    BUILD +build-host --HOST=nixos-miranda
