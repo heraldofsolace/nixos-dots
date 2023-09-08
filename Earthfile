@@ -13,13 +13,13 @@ build-host:
     ARG HOST=undefined
     FROM +deps
     COPY . .
-    RUN --secret CACHIX_AUTH_TOKEN -- cachix watch-exec heraldofsolace  --compression-method xz --compression-level 9 --jobs 2  -- $NIX build ".#nixosConfigurations.nixos-$HOST.config.system.build.toplevel"
+    RUN --secret CACHIX_AUTH_TOKEN -- cachix watch-exec heraldofsolace  --compression-method xz --compression-level 9 --jobs 2  -- $NIX build ".#nixosConfigurations.$HOST.config.system.build.toplevel"
 
-build-andromeda:
-    BUILD build-host --HOST=andromeda
+build-nixos-andromeda:
+    BUILD build-host --HOST=nixos-andromeda
 
-build-horologium:
-    BUILD build-host --HOST=horologium
+build-nixos-horologium:
+    BUILD build-host --HOST=nixos-horologium
 
-build-miranda:
-    BUILD build-host --HOST=miranda
+build-nixos-miranda:
+    BUILD build-host --HOST=nixos-miranda
