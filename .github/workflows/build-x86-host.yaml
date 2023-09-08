@@ -13,6 +13,9 @@ on:
 jobs:
   build-system:
     runs-on: ubuntu-latest
+    env:
+      EARTHLY_TOKEN: ${{ secrets.EARTHLY_TOKEN }}
+      SATELLITE_NAME: dots
     steps:
     - uses: actions/checkout@v3
     - name: Put back the git branch into git (Earthly uses it for tagging)
