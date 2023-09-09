@@ -1,4 +1,4 @@
-name: Build depsos
+name: Build Miranda
 on:
   push:
   workflow_dispatch:
