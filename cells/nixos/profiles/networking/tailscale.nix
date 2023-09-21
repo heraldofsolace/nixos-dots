@@ -11,4 +11,8 @@
     enable = true;
     authFile = config.sops.secrets.tailscale-key.path;
   };
+
+  environment.persistence."/persist".directories = [
+    "/var/lib/tailscale"
+  ];
 }
