@@ -19,6 +19,10 @@
       ssh
     ];
 
+    education = [
+      education
+    ];
+
     shell-extras = with shell; [
       bat
       cli
@@ -96,6 +100,7 @@ in {
         develop-gui
         android
         shell-extras
+        education
       ];
   };
   minimal = {...}: {imports = suites.base;};

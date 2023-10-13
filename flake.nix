@@ -37,15 +37,14 @@
     };
 
     haumea = {
-      url = "github:nix-community/haumea/v0.2.2";
-      inputs.nixpkgs.follows = "nixpkgs";
+      follows = "hive/std/haumea";
     };
 
     hive = {
       url = "github:divnix/hive";
       inputs = {
-        haumea.follows = "haumea";
-        nixos-generators.follows = "nixos-generators";
+        nixago.follows = "nixago";
+        nixpkgs.follows = "nixpkgs";
         colmena.follows = "colmena";
       };
     };

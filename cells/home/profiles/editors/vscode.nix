@@ -13,16 +13,16 @@ in {
     # TODO split extensions based on active modules
     extensions = with vs-exts;
       [
-        github.copilot
+        # github.copilot
         ms-python.python
         mikestead.dotenv
-        ms-vscode.cpptools
+        # ms-vscode.cpptools
         ms-vscode-remote.remote-ssh
         ms-vscode-remote.remote-ssh-edit
-        ms-pyright.pyright
+        # ms-pyright.pyright
         jnoortheen.nix-ide
         yzhang.markdown-all-in-one
-        eamodio.gitlens
+        # eamodio.gitlens
         ms-azuretools.vscode-docker
         github.vscode-pull-request-github
         dbaeumer.vscode-eslint

@@ -9,7 +9,6 @@ _: {pkgs, ...}: {
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         # https-everywhere
         privacy-badger
-        bitwarden
         addy_io
         buster-captcha-solver
         c-c-search-extension
@@ -29,6 +28,31 @@ _: {pkgs, ...}: {
         terms-of-service-didnt-read
         ublock-origin
         umatrix
+        # bypass-paywalls-clean
+        dictionaries
+        enhancer-for-youtube
+        facebook-container
+        firenvim
+        french-dictionary
+        french-language-pack
+        furiganaize
+        gesturefy
+        greasemonkey
+        hover-zoom-plus
+        istilldontcareaboutcookies
+        image-search-options
+        js-search-extension
+        link-gopher
+        momentumdash
+        mullvad
+        octolinker
+        promnesia
+        raindropio
+        return-youtube-dislikes
+        stylus
+        to-deepl
+        video-downloadhelper
+        youtube-nonstop
       ];
     };
   };

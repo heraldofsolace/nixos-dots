@@ -38,5 +38,6 @@ in {
     ffmpeg_5-full
     earthly
     jetbrains
+    siril
     ;
 }

@@ -55,6 +55,7 @@ in {
         hideMounts = true;
         directories = [
           "/etc/nix"
+          "/etc/pipewire"
           "/root"
         ];
         files = [
