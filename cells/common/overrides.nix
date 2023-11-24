@@ -39,5 +39,6 @@ in {
     earthly
     jetbrains
     siril
+    obs-studio
     ;
 }

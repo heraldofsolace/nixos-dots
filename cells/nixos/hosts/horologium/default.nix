@@ -12,6 +12,7 @@ in {
     profiles.desktop.plasma
     profiles.misc.gparted
     profiles.misc.op
+    profiles.astronomy
     profiles.networking.common
     profiles.networking.samba
     profiles.networking.tailscale
@@ -36,6 +37,8 @@ in {
     ];
     config.permittedInsecurePackages = [
       "qtwebkit-5.212.0-alpha4"
+      "zotero-6.0.26"
+      "electron-24.8.6"
     ];
   };
 
