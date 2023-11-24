@@ -40,5 +40,11 @@ in {
     jetbrains
     siril
     obs-studio
+    vial
+    via
+    wally-cli
+    kanata
+    fcitx5-openbangla-keyboard
+    electron
     ;
 }

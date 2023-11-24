@@ -35,7 +35,7 @@ in {
         description = "Aniket Bhattacharyea";
         isNormalUser = true;
         uid = 1000;
-        extraGroups = ["wheel" "docker" "networkmanager" "plugdev" "i2c" "vboxusers" "scanner" "lp"];
+        extraGroups = ["wheel" "docker" "networkmanager" "plugdev" "i2c" "vboxusers" "scanner" "lp" "audio" "realtime" "input" "uinput"];
         shell = pkgs.bash; # bash as default shell to keep myself sane. In interactive mode, bash drops into fish
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA3GRcKkyXAJvKjyovyzkPzV9aaT7FRBSbnR1t1bmwqP"

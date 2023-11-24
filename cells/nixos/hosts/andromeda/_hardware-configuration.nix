@@ -2,6 +2,7 @@
   config,
   lib,
   modulesPath,
+  pkgs,
   ...
 }: {
   imports = [
@@ -10,11 +11,12 @@
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
+  boot.kernelModules = ["kvm-amd" "uinput"];
   boot.extraModulePackages = [];
   boot.blacklistedKernelModules = ["rtl8192cu" "rtl_usb" "rtl8192c_common" "rtlwifi"];
   boot.extraModprobeConfig = ''
     options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1
+    options snd_usb_audio vid=0x1235 pid=0x8210 device_setup=1
   '';
   fileSystems."/" = {
     device = "rpool/local/root";
@@ -71,9 +73,13 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware.keyboard.zsa.enable = true;
-
+  hardware.keyboard.qmk.enable = true;
   hardware.logitech.wireless.enable = true;
   hardware.logitech.wireless.enableGraphical = true;
 
   hardware.bluetooth.enable = true;
+  services.udev.packages = [ pkgs.bazecor ];
+  services.udev.extraRules = ''
+  KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+  '';
 }

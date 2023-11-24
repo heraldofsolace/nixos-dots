@@ -64,6 +64,7 @@
       editors.vscode-server
     ];
 
+    keyboards = [ misc.keyboard ];
     android = [dev.android];
 
     gui-apps = [
@@ -89,6 +90,11 @@
     media = [
       misc.obs
     ];
+
+    audio = [
+      audio
+    ];
+
   };
 in {
   workstation = {...}: {
@@ -101,6 +107,8 @@ in {
         android
         shell-extras
         education
+        audio
+        keyboards
       ];
   };
   minimal = {...}: {imports = suites.base;};

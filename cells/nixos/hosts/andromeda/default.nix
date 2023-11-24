@@ -41,11 +41,12 @@ in {
     ];
     config.permittedInsecurePackages = [
       "qtwebkit-5.212.0-alpha4"
+      "zotero-6.0.26"
+      "electron-24.8.6"
     ];
   };
 
   environment = {
-    # systemPackages = [inputs.nixos.wally-cli];
     variables = {
       EDITOR = "vim";
     };

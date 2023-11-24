@@ -107,6 +107,9 @@ in {
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
+    source-han-sans
+    source-han-serif
+    lohit-fonts.bengali
   ];
 
   #region Common system defaults
