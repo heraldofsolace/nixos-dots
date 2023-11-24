@@ -1,0 +1,198 @@
+(defcfg
+    process-unmapped-keys yes
+    sequence-timeout 150
+    sequence-input-mode hidden-delay-type
+)
+
+(defsrc
+esc 9 3 1 5 7 min     eql 6 2 0 4 8 bspc
+caps w f m p v [         ] / . q ' z
+    r s n t b           \ a e i h j
+lsft lalt lctrl         rsft ralt rctrl
+    x c l d g           u o y k
+        tab spc ret grv
+
+)
+(deflayer default
+esc 9 3 1 5 7 @chmin     eql 6 2 0 4 8 bspc
+caps @chw @chf @chm @chp v [         ] / . @adq ' z
+    @chr @chs @chn @cht @adb           \ @cha @che @chi @chh j
+lsft lalt lctrl         rsft ralt rctrl
+    @chx @chc @chl @chd @chg           @chu @cho @chy @chk
+        tab spc ret grv
+)
+
+(defalias
+    chu (chord adkeys u)
+    chy (chord adkeys y)
+    chmin (chord adkeys min)
+    chk (chord adkeys k)
+    cho (chord adkeys o)
+    chx (chord adkeys x)
+    chc (chord adkeys c)
+    chl (chord adkeys l)
+    chd (chord adkeys d)
+    chw (chord adkeys w)
+    chf (chord adkeys f)
+    chr (chord adkeys r)
+    chs (chord adkeys s)
+    cht (chord adkeys t)
+    chp (chord adkeys p)
+    chg (chord adkeys g)
+    chm (chord adkeys m)
+    chn (chord adkeys n)
+    cha (chord adkeys a)
+    che (chord adkeys e)
+    chi (chord adkeys i)
+    chh (chord adkeys h)
+    qu (macro q u)
+    Qu (multi (release-key lsft) (release-key rsft) (macro S-q u))
+    th (macro t h)
+    Th (multi (release-key lsft) (release-key rsft) (macro S-t h))
+    sh (macro s h)
+    Sh (multi (release-key lsft) (release-key rsft) (macro S-s h))
+    ch (macro c h)
+    Ch (multi (release-key lsft) (release-key rsft) (macro S-c h))
+    wh (macro w h)
+    Wh (multi (release-key lsft) (release-key rsft) (macro S-w h))
+    gh (macro g h)
+    Gh (multi (release-key lsft) (release-key rsft) (macro S-g h))
+    ph (macro p h)
+    Ph (multi (release-key lsft) (release-key rsft) (macro S-p h))
+    0 0
+    1 1
+    2 2
+    3 3
+    4 4
+    5 5
+    6 6
+    7 7
+    8 8
+    9 9
+)
+
+(deflayer adaptive1
+esc 9 3 1 5 7 min     eql 6 2 0 4 8 bspc
+caps w f l p b [         ] / u q ' z
+    @chr @chs @chn @cht b           \ @cha @che i h j
+lsft lalt lctrl         rsft ralt rctrl
+    @chx @chc @chl l @chg           @chu o @chy k
+        tab spc ret grv
+)
+
+
+
+(defalias
+    adq (multi 
+        q 
+        (on-press-fakekey fk-adaptive1 press)
+        (macro 200 (on-press-fakekey fk-adaptive1 release)))
+    adb (multi 
+        b
+        (on-press-fakekey fk-adaptive1 press)
+        (macro 200 (on-press-fakekey fk-adaptive1 release)))
+)
+
+(deffakekeys
+    fk-adaptive1 (layer-while-held adaptive1)
+)
+
+(defchords adkeys 200
+    (u ) u
+    (  y) y
+    (u y) (switch
+        (lsft rsft) @Qu break
+        () @qu break
+    )
+
+    (min    ) min
+    (   o   ) o
+    (    k  ) k
+    (min u  ) (macro C-S-u @2 @0 @1 @3 ret)
+    (min  o  ) (macro C-S-u @2 @0 @1 @4 ret)
+    (min   k  ) C-grv
+    ( u  k   ) S-min
+    (  y k   ) eql
+
+    (x    ) x
+    (  c  ) c
+    (    l ) l
+    (     d) (macro sldr d)
+    (x c   ) C-z
+    (x   l  ) C-x
+    (  c l  ) C-c
+    (    l d) C-v
+    (x      d) C-a
+    (   c    d) C-f
+
+
+    (w        ) w
+    ( f       ) (multi
+                f
+                (on-press-fakekey fk-adaptive1 press)
+                (macro 200 (on-press-fakekey fk-adaptive1 release)))
+    (w f      ) (fork z S-z (lsft rsft))
+    (   r     ) r
+    (   s     ) s
+    (    t    ) t
+    (     n   ) n
+    (      p  ) (macro sldr p)
+    (        g) g
+    (          m) (multi
+                m
+                (on-press-fakekey fk-adaptive1 press)
+                (macro 200 (on-press-fakekey fk-adaptive1 release)))
+    (   r s   ) tab
+    (   r  t  ) esc
+    (      t n  ) (switch
+        (lsft rsft) @Th break
+        () @th break
+    )
+    (    s  n   ) (switch
+        (lsft rsft) @Sh break
+        () @sh break
+    )
+    (    s t     ) (switch
+        (lsft rsft) @Ch break
+        () @ch break
+    )
+    ( f      p   ) (switch
+        (lsft rsft) @Wh break
+        () @wh break
+    )
+    (          d g ) (switch
+        (lsft rsft) @Gh break
+        () @gh break
+    )
+    (         p  m) (switch
+        (lsft rsft) @Ph break
+        () @ph break
+    )
+
+    (a     ) a
+    (  e   ) e
+    (    i  ) i
+    (      h) h
+    (a e) (macro C-S-u @0 @3 @0 @1 ret)
+    (e i) (macro C-S-u @0 @3 @0 @0 ret)
+    (a i) (macro C-S-u @0 @3 @0 @2 ret)
+    (a h) (macro C-S-u @0 @3 @0 @8 ret)
+    (e h) (macro C-S-u @0 @3 @2 @7 ret)
+    (i h) (fork
+        (macro C-S-u @0 @0 d f ret)
+        (macro C-S-u @1 e @9 e ret)
+        (lsft rsft)
+    )
+)
+
+(defseq
+    pv-adaptive (p v)
+    pm-adaptive (p m)
+    db-adaptive (d b)
+)
+
+(deffakekeys
+    pv-adaptive (macro l v)
+    pm-adaptive (macro p l)
+    db-adaptive (macro l b)
+)

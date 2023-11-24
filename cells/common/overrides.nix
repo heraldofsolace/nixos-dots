@@ -39,5 +39,11 @@ in {
     earthly
     jetbrains
     siril
+    vial
+    via
+    wally-cli
+    kanata
+    fcitx5-openbangla-keyboard
+    electron
     ;
 }
