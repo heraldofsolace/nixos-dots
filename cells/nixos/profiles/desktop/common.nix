@@ -14,9 +14,24 @@
   users.groups.realtime = {};
   users.groups.uinput = {};
   security.pam.loginLimits = [
-    { domain = "@realtime"; type = "-"; item = "memlock"; value = "unlimited"; }
-    { domain = "@realtime"; type = "-"; item = "rtprio"; value = "95"; }
-    { domain = "@realtime"; type = "-"; item = "nice"; value = "-11"; }
+    {
+      domain = "@realtime";
+      type = "-";
+      item = "memlock";
+      value = "unlimited";
+    }
+    {
+      domain = "@realtime";
+      type = "-";
+      item = "rtprio";
+      value = "95";
+    }
+    {
+      domain = "@realtime";
+      type = "-";
+      item = "nice";
+      value = "-11";
+    }
   ];
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -46,13 +61,13 @@
     LC_TELEPHONE = "en_IN.UTF-8";
     LC_TIME = "en_IN.UTF-8";
   };
-    i18n.inputMethod = {
-      enabled = "fcitx5";
-      fcitx5.addons = with pkgs; [
-          fcitx5-mozc
-          fcitx5-gtk
-          fcitx5-openbangla-keyboard
-      ];
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-mozc
+      fcitx5-gtk
+      # fcitx5-openbangla-keyboard
+    ];
   };
   environment.sessionVariables = {
     XMODIFIERS = "@im=fcitx";

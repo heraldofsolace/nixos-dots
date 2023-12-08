@@ -11,8 +11,8 @@
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd" "uinput"];
-  boot.extraModulePackages = [];
+  boot.kernelModules = ["kvm-amd" "uinput" "v4l2loopback"];
+  boot.extraModulePackages = [pkgs.linuxPackages.v4l2loopback];
   boot.blacklistedKernelModules = ["rtl8192cu" "rtl_usb" "rtl8192c_common" "rtlwifi"];
   boot.extraModprobeConfig = ''
     options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1
@@ -78,8 +78,8 @@
   hardware.logitech.wireless.enableGraphical = true;
 
   hardware.bluetooth.enable = true;
-  services.udev.packages = [ pkgs.bazecor ];
+  services.udev.packages = [pkgs.bazecor];
   services.udev.extraRules = ''
-  KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+    KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
   '';
 }
