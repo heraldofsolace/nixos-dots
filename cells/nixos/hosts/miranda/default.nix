@@ -28,6 +28,9 @@ in {
       nvfetcher
       agenix
     ];
+    config.permittedInsecurePackages = [
+      "electron-24.8.6"
+    ];
   };
 
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
@@ -41,9 +44,6 @@ in {
     EDITOR = "vim";
   };
 
-  config.permittedInsecurePackages = [
-    "electron-24.8.6"
-  ];
   networking.hostName = "miranda";
 
   services.openssh = {
