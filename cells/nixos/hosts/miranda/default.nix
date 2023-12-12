@@ -41,6 +41,9 @@ in {
     EDITOR = "vim";
   };
 
+  config.permittedInsecurePackages = [
+    "electron-24.8.6"
+  ];
   networking.hostName = "miranda";
 
   services.openssh = {
