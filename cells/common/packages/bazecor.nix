@@ -1,18 +1,18 @@
-{ lib
-, appimageTools
-, fetchurl
-, ...
+{
+  lib,
+  appimageTools,
+  fetchurl,
+  ...
 }:
-
 appimageTools.wrapAppImage rec {
   pname = "bazecor";
-  version = "1.3.6";
+  version = "1.3.8";
 
   src = appimageTools.extract {
     inherit pname version;
     src = fetchurl {
-      url = "https://github.com/Dygmalab/Bazecor/releases/download/v.${version}/Bazecor-${version}-x64.AppImage";
-      hash = "sha256-Mz7T/AAlyfMzdfy/ZV4AEP3ClTolwr2pPzkSCPL66/w=";
+      url = "https://github.com/Dygmalab/Bazecor/releases/download/v${version}/Bazecor-${version}-x64.AppImage";
+      hash = "sha256-SwlSH5z0p9ZVoDQzj4GxO3g/iHG8zQZndE4TmqdMtZQ=";
     };
 
     # Workaround for https://github.com/Dygmalab/Bazecor/issues/370
@@ -29,9 +29,11 @@ appimageTools.wrapAppImage rec {
   # taken from
   # https://github.com/Dygmalab/Bazecor/blob/v1.3.6/src/main/utils/udev.ts#L6
 
-  extraPkgs = p: (appimageTools.defaultFhsEnvArgs.multiPkgs p) ++ [
-    p.glib
-  ];
+  extraPkgs = p:
+    (appimageTools.defaultFhsEnvArgs.multiPkgs p)
+    ++ [
+      p.glib
+    ];
 
   # Also expose the udev rules here, so it can be used as:
   #   services.udev.packages = [ pkgs.bazecor ];
@@ -47,9 +49,9 @@ appimageTools.wrapAppImage rec {
     description = "Graphical configurator for Dygma Products";
     homepage = "https://github.com/Dygmalab/Bazecor";
     changelog = "https://github.com/Dygmalab/Bazecor/releases/tag/v${version}";
-    sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
+    sourceProvenance = [lib.sourceTypes.binaryNativeCode];
     license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [ amesgen ];
-    platforms = [ "x86_64-linux" ];
+    maintainers = with lib.maintainers; [amesgen];
+    platforms = ["x86_64-linux"];
   };
 }

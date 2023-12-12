@@ -35,7 +35,7 @@
       navi
       nushell
       pywal
-      sagemath
+      # sagemath
     ];
 
     develop = [
@@ -64,7 +64,7 @@
       editors.vscode-server
     ];
 
-    keyboards = [ misc.keyboard ];
+    keyboards = [misc.keyboard];
     android = [dev.android];
 
     gui-apps = [
@@ -94,7 +94,6 @@
     audio = [
       audio
     ];
-
   };
 in {
   workstation = {...}: {

@@ -4,6 +4,7 @@ _: {pkgs, ...}: {
     kstars
     stellarium
     siril-new2
+    sirilic
     # pixinsight
   ];
 

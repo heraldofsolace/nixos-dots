@@ -17,7 +17,19 @@ _: {
   networking.useDHCP = lib.mkDefault true;
   networking.dhcpcd.wait = "background";
   networking.dhcpcd.extraConfig = "noarp";
-  services.avahi.enable = true;
-  services.avahi.nssmdns = true;
+
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      domain = true;
+      hinfo = true;
+      userServices = true;
+      workstation = true;
+    };
+  };
   systemd.services.NetworkManager-wait-online.enable = false;
 }

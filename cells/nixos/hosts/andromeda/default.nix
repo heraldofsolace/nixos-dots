@@ -95,6 +95,6 @@ in {
   };
 
   security.polkit.enable = true;
-
+  services.avahi.hostName = "andromeda";
   system.stateVersion = "22.05";
 }
