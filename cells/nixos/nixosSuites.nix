@@ -22,6 +22,7 @@ in
       imports = [
         profiles.core
         profiles.entertainment.plex
+        profiles.entertainment.jellyfin
         users.aniket-miranda
         users.root
         inputs.cells.secrets.nixosProfiles.secrets
