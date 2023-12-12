@@ -21,6 +21,7 @@ in
     miranda = _: {
       imports = [
         profiles.core
+        profiles.entertainment.plex
         users.aniket-miranda
         users.root
         inputs.cells.secrets.nixosProfiles.secrets
