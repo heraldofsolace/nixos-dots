@@ -21,6 +21,7 @@ in {
     profiles.networking.tailscale
     profiles.security.sudo
     profiles.services.postgres
+    profiles.services.mariadb
     profiles.services.virtualbox
     inputs.grub2-themes.nixosModules.default
     ./_hardware-configuration.nix
@@ -91,6 +92,22 @@ in {
           bits = 4096;
         }
       ];
+    };
+  };
+
+  services.httpd = {
+    enable = true;
+    extraModules = ["proxy" "proxy_http" "proxy_connect"];
+    adminAddr = "admin@andromeda";
+    virtualHosts."andromeda" = {
+      extraConfig = ''
+        ProxyRequests On
+        ProxyVia On
+        <Proxy *>
+            Order deny,allow
+            Allow from all
+        </Proxy>
+      '';
     };
   };
 

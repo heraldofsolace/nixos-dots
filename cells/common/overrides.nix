@@ -46,5 +46,6 @@ in {
     kanata
     fcitx5-openbangla-keyboard
     electron
+    kstars
     ;
 }

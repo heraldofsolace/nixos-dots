@@ -5,6 +5,8 @@ _: {pkgs, ...}: {
     stellarium
     siril-new2
     sirilic
+    indi-full
+    phd2
     # pixinsight
   ];
 

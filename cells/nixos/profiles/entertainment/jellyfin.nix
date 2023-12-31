@@ -1,4 +1,4 @@
-_: { pkgs, ...}: {
+_: {pkgs, ...}: {
   environment.systemPackages = [
     pkgs.jellyfin
     pkgs.jellyfin-web
