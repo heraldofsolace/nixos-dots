@@ -19,6 +19,11 @@
     fsType = "ext4";
   };
 
+  fileSystems."/var/lib/nextcloud" = {
+    device = "/dev/disk/by-uuid/ee86aeac-30b6-4c48-8630-d8212cd6d942";
+    fsType = "ext4";
+  };
+
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/D074-7B2E";
     fsType = "vfat";

@@ -9,6 +9,9 @@
     andromeda = {
       deployment.allowLocalDeployment = true;
     };
+    miranda = {
+      deployment.targetUser = "aniket-miranda";
+    };
   };
 in
   l.mapAttrs

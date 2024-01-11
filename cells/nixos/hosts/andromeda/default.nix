@@ -95,19 +95,17 @@ in {
     };
   };
 
-  services.httpd = {
+  services.nginx = {
     enable = true;
-    extraModules = ["proxy" "proxy_http" "proxy_connect"];
-    adminAddr = "admin@andromeda";
+    defaultListenAddresses = ["80"];
     virtualHosts."andromeda" = {
-      extraConfig = ''
-        ProxyRequests On
-        ProxyVia On
-        <Proxy *>
-            Order deny,allow
-            Allow from all
-        </Proxy>
-      '';
+      locations."/" = {
+        proxyPass = "http://$host$request_uri$is_args$args";
+        extraConfig = ''
+          resolver 8.8.8.8;
+             proxy_set_header 'X-Proxy-Server' 'Nginx';
+        '';
+      };
     };
   };
 

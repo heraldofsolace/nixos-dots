@@ -27,6 +27,24 @@
         neededForUsers = true;
       };
 
+      nextcloud-password = {
+        key = "nextcloud";
+        sopsFile = ./sops/user-passwords.yaml;
+        owner = "nextcloud";
+      };
+
+      miranda-cert = {
+        key = "miranda-cert";
+        sopsFile = ./sops/keys.yaml;
+        owner = "nginx";
+      };
+
+      miranda-cert-key = {
+        key = "miranda-cert-key";
+        sopsFile = ./sops/keys.yaml;
+        owner = "nginx";
+      };
+
       tailscale-key = {
         key = "tailscale";
         sopsFile = ./sops/keys.yaml;

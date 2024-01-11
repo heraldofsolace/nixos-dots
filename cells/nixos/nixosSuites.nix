@@ -24,6 +24,8 @@ in
         profiles.entertainment.plex
         profiles.entertainment.jellyfin
         users.aniket-miranda
+        users.nextcloud
+        users.nginx
         users.root
         inputs.cells.secrets.nixosProfiles.secrets
       ];

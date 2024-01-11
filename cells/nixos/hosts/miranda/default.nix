@@ -11,6 +11,7 @@ in {
     profiles.docker
     profiles.networking.server
     profiles.networking.tailscale
+    profiles.networking.nextcloud
     profiles.security.sudo
     profiles.services.postgres
     ./_hardware-configuration.nix
@@ -30,6 +31,7 @@ in {
     ];
     config.permittedInsecurePackages = [
       "electron-24.8.6"
+      "openssl-1.1.1w"
     ];
   };
 
