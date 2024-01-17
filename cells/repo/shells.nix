@@ -22,6 +22,7 @@
     editorconfig-checker
     mdbook
     gnupg
+    nix-prefetch-github
     ;
 
   pkgWithCategory = category: package: {inherit package category;};
@@ -103,6 +104,7 @@ in
         nixUnstable
         gnupg
         update-cell-sources
+        nix-prefetch-github
       ];
 
       commands = [

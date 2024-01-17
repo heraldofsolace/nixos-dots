@@ -3,5 +3,26 @@
   "files.autoSaveDelay": 1000,
   "workbench.iconTheme": "vscode-icons",
   "vsicons.dontShowNewVersionMessage": true,
-  "editor.inlineSuggest.enabled": true
+  "editor.inlineSuggest.enabled": true,
+  "[nix]": {
+    "editor.formatOnSave": true
+  },
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true
+  },
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nil",
+  "nix.serverSettings": {
+    "nil": {
+      "formatting": {
+        "command": ["alejandra"]
+      }
+    }
+  },
+  "terraform.codelens.referenceCount": true,
+  "terraform.experimentalFeatures.prefillRequiredFields": true,
+  "terraform.experimentalFeatures.validateOnSave": true,
+  "vscode-kubernetes.log-viewer.follow": true,
+  "window.zoomLevel": 1
 }

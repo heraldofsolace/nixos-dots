@@ -1,10 +1,37 @@
-{ lib, stdenv, fetchFromGitLab, fetchpatch, pkg-config, meson, ninja, cmake
-, git, criterion, gtk3, libconfig, gnuplot, opencv, json-glib
-, fftwFloat, cfitsio, gsl, exiv2, librtprocess, wcslib, ffmpeg
-, libraw, libtiff, libpng, libjpeg, libheif, ffms, wrapGAppsHook
-, glib-networking, curl, ...
+{
+  lib,
+  stdenv,
+  fetchFromGitLab,
+  fetchpatch,
+  pkg-config,
+  meson,
+  ninja,
+  cmake,
+  git,
+  criterion,
+  gtk3,
+  libconfig,
+  gnuplot,
+  opencv,
+  json-glib,
+  fftwFloat,
+  cfitsio,
+  gsl,
+  exiv2,
+  librtprocess,
+  wcslib,
+  ffmpeg,
+  libraw,
+  libtiff,
+  libpng,
+  libjpeg,
+  libheif,
+  ffms,
+  wrapGAppsHook,
+  glib-networking,
+  curl,
+  ...
 }:
-
 stdenv.mkDerivation rec {
   pname = "siril-new2";
   version = "1.2.0";
@@ -25,12 +52,38 @@ stdenv.mkDerivation rec {
   ];
 
   nativeBuildInputs = [
-    meson ninja cmake pkg-config git criterion wrapGAppsHook glib-networking curl
+    meson
+    ninja
+    cmake
+    pkg-config
+    git
+    criterion
+    wrapGAppsHook
+    glib-networking
+    curl
   ];
 
   buildInputs = [
-    gtk3 cfitsio gsl exiv2 gnuplot opencv fftwFloat librtprocess wcslib
-    libconfig libraw libtiff libpng libjpeg libheif ffms ffmpeg json-glib glib-networking curl
+    gtk3
+    cfitsio
+    gsl
+    exiv2
+    gnuplot
+    opencv
+    fftwFloat
+    librtprocess
+    wcslib
+    libconfig
+    libraw
+    libtiff
+    libpng
+    libjpeg
+    libheif
+    ffms
+    ffmpeg
+    json-glib
+    glib-networking
+    curl
   ];
 
   # Necessary because project uses default build dir for flatpaks/snaps
@@ -50,7 +103,7 @@ stdenv.mkDerivation rec {
     description = "Astrophotographic image processing tool";
     license = licenses.gpl3Plus;
     changelog = "https://gitlab.com/free-astro/siril/-/blob/HEAD/ChangeLog";
-    maintainers = with maintainers; [ hjones2199 ];
+    maintainers = with maintainers; [hjones2199];
     platforms = platforms.linux;
   };
 }

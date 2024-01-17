@@ -12,7 +12,7 @@ writeShellApplication {
         fi
       fi
 
-      trap "rm /dev/shm/in_use; curl --header \"Content-Type: application/json\" --request POST --data '{\"in_use\": 'false'}' http://hass:8123/api/webhook/eaea48a1-30e3-47bf-a076-30f816f0d3d1" EXIT
+      trap 'rm /dev/shm/in_use; curl --header "Content-Type: application/json" --request POST --data "{\"in_use\": \"false\"}" "$1"' EXIT
 
       echo $$ > /dev/shm/in_use.pid
 
@@ -22,8 +22,8 @@ writeShellApplication {
       # Store a timestamp 10 minutes in the past, to trigger an immediate update.
       echo $(( $(date +%s%3N) - 600000)) > /dev/shm/in_use.timestamp
 
-      # Consider computer idle after 5 minutes.
-      TIMEOUT=300000
+      # Consider computer idle after 3 minutes.
+      TIMEOUT=180000
 
       while true; do
       if [ "$(xprintidle)" -lt $TIMEOUT ]; then
@@ -32,7 +32,7 @@ writeShellApplication {
         IN_USE=false
       fi
 
-      # Report every 5 minutes.
+      # Report every 3 minutes.
       if [ "$(date +%s%3N)" -gt $(( $(cat /dev/shm/in_use.timestamp) + TIMEOUT)) ]; then
         REPORT=true
       else
@@ -48,7 +48,7 @@ writeShellApplication {
       if $REPORT || $CHANGED; then
         echo $IN_USE > /dev/shm/in_use
         date +%s%3N > /dev/shm/in_use.timestamp
-        curl --header "Content-Type: application/json" --request POST --data '{"in_use": '$IN_USE'}' http://hass:8123/api/webhook/eaea48a1-30e3-47bf-a076-30f816f0d3d1
+        curl --header "Content-Type: application/json" --request POST --data '{"in_use": '$IN_USE'}' "$1"
       fi
 
       sleep 0.2

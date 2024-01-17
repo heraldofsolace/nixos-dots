@@ -20,7 +20,7 @@ _: {
 
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [5555 27183 22];
-  
+
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
 }

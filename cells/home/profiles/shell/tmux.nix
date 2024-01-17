@@ -39,6 +39,7 @@ _: {
     };
   };
 in {
+  home.packages = [pkgs.tmx];
   programs.tmux = {
     enable = true;
 
@@ -61,7 +62,7 @@ in {
         '';
       }
     ];
-
+    tmuxinator.enable = true;
     extraConfig = ''
       source-file "${oh-my-tmux-conf-path}";
     '';

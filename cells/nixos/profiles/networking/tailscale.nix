@@ -10,7 +10,7 @@
   tl.services.tailscale-autoconnect = {
     enable = true;
     authFile = config.sops.secrets.tailscale-key.path;
-    extraUpArgs = [ "--ssh" ];
+    extraUpArgs = ["--ssh"];
   };
 
   environment.persistence."/persist".directories = [

@@ -43,7 +43,7 @@ in {
     config.permittedInsecurePackages = [
       "qtwebkit-5.212.0-alpha4"
       "zotero-6.0.26"
-      "electron-24.8.6"
+      "electron-25.9.0"
     ];
   };
 
@@ -75,7 +75,7 @@ in {
     xserver = {
       enable = true;
       wacom.enable = true;
-      videoDrivers = ["amdgpu"]; # Need a way to change this for different hosts
+      videoDrivers = ["amdgpu"];
     };
     openssh = {
       enable = true;
@@ -92,20 +92,6 @@ in {
           bits = 4096;
         }
       ];
-    };
-  };
-
-  services.nginx = {
-    enable = true;
-    defaultListenAddresses = ["80"];
-    virtualHosts."andromeda" = {
-      locations."/" = {
-        proxyPass = "http://$host$request_uri$is_args$args";
-        extraConfig = ''
-          resolver 8.8.8.8;
-             proxy_set_header 'X-Proxy-Server' 'Nginx';
-        '';
-      };
     };
   };
 

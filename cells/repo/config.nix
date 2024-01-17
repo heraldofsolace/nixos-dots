@@ -66,7 +66,7 @@ in {
         };
         prettier = {
           command = "prettier";
-          options = ["--plugin" "prettier-plugin-toml" "--write"];
+          options = ["--plugin" "${inputs.nixpkgs.nodePackages.prettier-plugin-toml}/lib/node_modules/prettier-plugin-toml/lib/api.js" "--write"];
           includes = [
             "*.css"
             "*.html"

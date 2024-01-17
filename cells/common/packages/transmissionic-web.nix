@@ -29,5 +29,3 @@ stdenvNoCC.mkDerivation rec {
     license = licenses.mit;
   };
 }
-#
-

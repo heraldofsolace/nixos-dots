@@ -88,6 +88,9 @@ _: {
     enableFishIntegration = true;
   };
   programs.bash.bashrcExtra = ''
+    if [ -x "$(command -v tmux)" ] && [ -n "''${DISPLAY}" ] && [ -z "''${TMUX}" ]; then
+        exec tmx ''${USER} >/dev/null 2>&1
+    fi
     if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
     then
             exec fish

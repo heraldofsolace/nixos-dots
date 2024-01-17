@@ -94,7 +94,7 @@ in {
   home-manager.useUserPackages = true;
   home-manager.verbose = true;
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     nerdfonts
     powerline-fonts
     dejavu_fonts

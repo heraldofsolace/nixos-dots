@@ -15,6 +15,8 @@ in
         users.aniket
         users.root
         users.hass
+        users.nextcloud
+        users.nginx
         inputs.cells.secrets.nixosProfiles.secrets
       ];
     };

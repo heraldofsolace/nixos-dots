@@ -11,7 +11,7 @@
       shell.bash
       shell.fish
       shell.tmux
-      shell.exa
+      shell.eza
       shell.bat
       shell.gpg
       editors.nvim

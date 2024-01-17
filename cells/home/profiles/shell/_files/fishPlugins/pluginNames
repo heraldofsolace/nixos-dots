@@ -3,3 +3,4 @@ oh-my-fish plugin-thefuck
 oh-my-fish plugin-foreign-env
 oh-my-fish plugin-gi
 danhper fish-ssh-agent
+vincentjames501 fish-kill-on-port

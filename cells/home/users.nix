@@ -26,12 +26,12 @@ in {
             commit.gpgsign = true;
           };
         };
-
+        services.hass-report-usage.enable = true;
         home.stateVersion = "23.05";
       };
 
       users.users.aniket = {
-        passwordFile = config.sops.secrets.aniket-password.path;
+        hashedPasswordFile = config.sops.secrets.aniket-password.path;
         description = "Aniket Bhattacharyea";
         isNormalUser = true;
         uid = 1000;
@@ -65,7 +65,7 @@ in {
       };
 
       users.users.aniket-miranda = {
-        passwordFile = config.sops.secrets.aniket-password.path;
+        hashedPasswordFile = config.sops.secrets.aniket-password.path;
         description = "Aniket Bhattacharyea";
         isNormalUser = true;
         uid = 1000;
@@ -84,7 +84,7 @@ in {
       ...
     }: {
       users.users.hass = {
-        passwordFile = config.sops.secrets.hass-password.path;
+        hashedPasswordFile = config.sops.secrets.hass-password.path;
         description = "Home Assistant User";
         isNormalUser = true;
       };
