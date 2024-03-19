@@ -13,18 +13,7 @@ This flake is configured with the use of [hive][hive].
 ### NixOS hosts
 
 ```bash
-colmena build
-colmena apply
-# OR
 colmena apply --on "nixos-$HOST"
 ```
 
-### Darwin hosts
-
-```bash
-darwin-rebuild switch --flake .
-```
-
 [hive]: https://github.com/divnix/hive
-
-# backstage-k8s

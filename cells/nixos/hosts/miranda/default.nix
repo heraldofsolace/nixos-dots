@@ -12,6 +12,7 @@ in {
     profiles.networking.server
     profiles.networking.tailscale
     profiles.networking.nextcloud
+    profiles.networking.jitsi-meet
     profiles.security.sudo
     profiles.services.postgres
     ./_hardware-configuration.nix
@@ -30,7 +31,7 @@ in {
       agenix
     ];
     config.permittedInsecurePackages = [
-      "electron-24.8.6"
+      "electron-25.9.0"
       "openssl-1.1.1w"
     ];
   };

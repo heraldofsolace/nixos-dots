@@ -34,22 +34,22 @@
 }:
 stdenv.mkDerivation rec {
   pname = "siril-new2";
-  version = "1.2.0";
+  version = "1.2.1";
 
   src = fetchFromGitLab {
     owner = "free-astro";
     repo = "siril";
     rev = version;
-    hash = "sha256-lCoFQ7z6cZbyNPEm5s40DNdvTwFonHK3KCd8RniqQWs=";
+    hash = "sha256-njvByA8nbG3qHKfv8eX20TrIhngVI0nzIHmhYIN6htE=";
   };
 
-  patches = [
-    (fetchpatch {
-      name = "siril-1.2-exiv2-0.28.patch";
-      url = "https://gitweb.gentoo.org/repo/gentoo.git/plain/sci-astronomy/siril/files/siril-1.2-exiv2-0.28.patch?id=002882203ad6a2b08ce035a18b95844a9f4b85d0";
-      hash = "sha256-R1yslW6hzvJHKo0/IqBxkCuqcX6VrdRSz68gpAExxVE=";
-    })
-  ];
+  # patches = [
+  #   (fetchpatch {
+  #     name = "siril-1.2-exiv2-0.28.patch";
+  #     url = "https://gitweb.gentoo.org/repo/gentoo.git/plain/sci-astronomy/siril/files/siril-1.2-exiv2-0.28.patch?id=002882203ad6a2b08ce035a18b95844a9f4b85d0";
+  #     hash = "sha256-R1yslW6hzvJHKo0/IqBxkCuqcX6VrdRSz68gpAExxVE=";
+  #   })
+  # ];
 
   nativeBuildInputs = [
     meson

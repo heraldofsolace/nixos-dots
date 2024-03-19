@@ -28,7 +28,7 @@ _: {pkgs, ...}: {
         terms-of-service-didnt-read
         ublock-origin
         umatrix
-        # bypass-paywalls-clean
+        bypass-paywalls-clean
         dictionaries
         enhancer-for-youtube
         facebook-container
@@ -51,7 +51,7 @@ _: {pkgs, ...}: {
         return-youtube-dislikes
         stylus
         to-deepl
-        video-downloadhelper
+        # video-downloadhelper
         youtube-nonstop
       ];
     };

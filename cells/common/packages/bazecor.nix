@@ -6,13 +6,13 @@
 }:
 appimageTools.wrapAppImage rec {
   pname = "bazecor";
-  version = "1.3.8";
+  version = "1.3.11";
 
   src = appimageTools.extract {
     inherit pname version;
     src = fetchurl {
       url = "https://github.com/Dygmalab/Bazecor/releases/download/v${version}/Bazecor-${version}-x64.AppImage";
-      hash = "sha256-SwlSH5z0p9ZVoDQzj4GxO3g/iHG8zQZndE4TmqdMtZQ=";
+      hash = "";
     };
 
     # Workaround for https://github.com/Dygmalab/Bazecor/issues/370
@@ -43,6 +43,12 @@ appimageTools.wrapAppImage rec {
     mv $out/bin/bazecor-* $out/bin/bazecor
     mkdir -p $out/lib/udev/rules.d
     ln -s --target-directory=$out/lib/udev/rules.d ${./_files/10-dygma.rules}
+
+     # Now, install assets such as the desktop file and icons
+    install -m 444 -D ${src}/Bazecor.desktop -t $out/share/applications
+    substituteInPlace $out/share/applications/Bazecor.desktop \
+      --replace 'Exec=Bazecor %U' 'Exec=bazecor'
+    cp -r ${src}/usr/share/icons $out/share
   '';
 
   meta = {

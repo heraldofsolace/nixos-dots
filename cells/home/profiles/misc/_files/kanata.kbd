@@ -1,6 +1,6 @@
 (defcfg
     process-unmapped-keys yes
-    sequence-timeout 150
+    sequence-timeout 100
     sequence-input-mode hidden-delay-type
 )
 
@@ -13,6 +13,9 @@ lsft lalt lctrl         rsft ralt rctrl
         tab spc ret grv
 
 )
+
+;; Default layout
+
 (deflayer default
 esc 9 3 1 5 7 @chmin     eql 6 2 0 4 8 bspc
 caps @chw @chf @chm @chp v [         ] / . @adq ' z
@@ -23,6 +26,7 @@ lsft lalt lctrl         rsft ralt rctrl
 )
 
 (defalias
+    ;; Chords
     chu (chord adkeys u)
     chy (chord adkeys y)
     chmin (chord adkeys min)
@@ -45,6 +49,10 @@ lsft lalt lctrl         rsft ralt rctrl
     che (chord adkeys e)
     chi (chord adkeys i)
     chh (chord adkeys h)
+
+    ;; These have uppercase and lowercase versions
+
+
     qu (macro q u)
     Qu (multi (release-key lsft) (release-key rsft) (macro S-q u))
     th (macro t h)
@@ -59,6 +67,9 @@ lsft lalt lctrl         rsft ralt rctrl
     Gh (multi (release-key lsft) (release-key rsft) (macro S-g h))
     ph (macro p h)
     Ph (multi (release-key lsft) (release-key rsft) (macro S-p h))
+
+    ;; Numbers to be used in macros
+
     0 0
     1 1
     2 2
@@ -71,33 +82,22 @@ lsft lalt lctrl         rsft ralt rctrl
     9 9
 )
 
-(deflayer adaptive1
-esc 9 3 1 5 7 min     eql 6 2 0 4 8 bspc
-caps w f l p b [         ] / u q ' z
-    @chr @chs @chn @cht b           \ @cha @che i h j
-lsft lalt lctrl         rsft ralt rctrl
-    @chx @chc @chl l @chg           @chu o @chy k
-        tab spc ret grv
-)
-
-
-
+;; Adaptive keys
 (defalias
-    adq (multi 
-        q 
-        (on-press-fakekey fk-adaptive1 press)
-        (macro 200 (on-press-fakekey fk-adaptive1 release)))
-    adb (multi 
-        b
-        (on-press-fakekey fk-adaptive1 press)
-        (macro 200 (on-press-fakekey fk-adaptive1 release)))
+    ;; adq (multi 
+    ;;     q 
+    ;;     (on-press-fakekey fk-adaptive1 press)
+    ;;     (macro 100 (on-press-fakekey fk-adaptive1 release)))
+    ;; adb (multi 
+    ;;     b
+    ;;     (on-press-fakekey fk-adaptive1 press)
+    ;;     (macro 100 (on-press-fakekey fk-adaptive1 release)))
+    adb (macro sldr b)
+    adq (macro sldr q)
 )
 
-(deffakekeys
-    fk-adaptive1 (layer-while-held adaptive1)
-)
-
-(defchords adkeys 200
+(defchords adkeys 100
+    ;; uy -> Qu
     (u ) u
     (  y) y
     (u y) (switch
@@ -105,15 +105,21 @@ lsft lalt lctrl         rsft ralt rctrl
         () @qu break
     )
 
+    ;; -u -> –
+    ;; -o -> —
+    ;; -k -> ~
+    ;; uk -> _
+    ;; yk -> =
     (min    ) min
     (   o   ) o
     (    k  ) k
     (min u  ) (macro C-S-u @2 @0 @1 @3 ret)
     (min  o  ) (macro C-S-u @2 @0 @1 @4 ret)
-    (min   k  ) C-grv
+    (min   k  ) S-grv
     ( u  k   ) S-min
     (  y k   ) eql
 
+    ;; Obvious
     (x    ) x
     (  c  ) c
     (    l ) l
@@ -125,12 +131,10 @@ lsft lalt lctrl         rsft ralt rctrl
     (x      d) C-a
     (   c    d) C-f
 
+    ;; wf -> z
 
     (w        ) w
-    ( f       ) (multi
-                f
-                (on-press-fakekey fk-adaptive1 press)
-                (macro 200 (on-press-fakekey fk-adaptive1 release)))
+    ( f        ) (macro sldr f)
     (w f      ) (fork z S-z (lsft rsft))
     (   r     ) r
     (   s     ) s
@@ -138,10 +142,7 @@ lsft lalt lctrl         rsft ralt rctrl
     (     n   ) n
     (      p  ) (macro sldr p)
     (        g) g
-    (          m) (multi
-                m
-                (on-press-fakekey fk-adaptive1 press)
-                (macro 200 (on-press-fakekey fk-adaptive1 release)))
+    (           m) (macro sldr m)
     (   r s   ) tab
     (   r  t  ) esc
     (      t n  ) (switch
@@ -186,13 +187,21 @@ lsft lalt lctrl         rsft ralt rctrl
 )
 
 (defseq
+    qu-adaptive (q .)
+    fm-adaptive (f m)
     pv-adaptive (p v)
     pm-adaptive (p m)
+    bd-adaptive (b d)
     db-adaptive (d b)
+    mv-adaptive (m v)
 )
 
 (deffakekeys
+    qu-adaptive (macro q u .)
+    fm-adaptive (macro f l)
     pv-adaptive (macro l v)
     pm-adaptive (macro p l)
+    bd-adaptive (macro b l)
     db-adaptive (macro l b)
+    mv-adaptive (macro m b)
 )

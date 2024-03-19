@@ -6,5 +6,6 @@ _: {pkgs, ...}: {
     guitarix
     alsa-scarlett-gui
     bitwig-studio
+    mpc-cli
   ];
 }

@@ -26,6 +26,7 @@
     shell-extras = with shell; [
       bat
       cli
+      eww
       gpg
       jq
       mcfly
@@ -72,6 +73,7 @@
       browsers.brave
       comms.chat
       desktop.kdeconnect
+      misc.join
     ];
 
     finance = [
