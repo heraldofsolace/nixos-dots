@@ -12,7 +12,7 @@ appimageTools.wrapAppImage rec {
     inherit pname version;
     src = fetchurl {
       url = "https://github.com/Dygmalab/Bazecor/releases/download/v${version}/Bazecor-${version}-x64.AppImage";
-      hash = "";
+      hash = "sha256-iMurQDF0CBMnJnjmEgNIKYd8C5B4FguMi4Jqa3dHr3o=";
     };
 
     # Workaround for https://github.com/Dygmalab/Bazecor/issues/370

@@ -12,7 +12,6 @@ in {
     android-tools
     vscodium
     alejandra
-    rnix-lsp
     nil
     terraform
     terraform-ls
@@ -47,5 +46,7 @@ in {
     fcitx5-openbangla-keyboard
     electron
     kstars
+    neovim
+    upower
     ;
 }

@@ -16,7 +16,6 @@
   };
 
   home.packages = with inputs.cells.common.overrides; [
-    rnix-lsp
     alejandra
     nil
   ];

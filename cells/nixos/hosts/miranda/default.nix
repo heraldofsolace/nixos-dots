@@ -12,7 +12,6 @@ in {
     profiles.networking.server
     profiles.networking.tailscale
     profiles.networking.nextcloud
-    profiles.networking.jitsi-meet
     profiles.security.sudo
     profiles.services.postgres
     ./_hardware-configuration.nix
