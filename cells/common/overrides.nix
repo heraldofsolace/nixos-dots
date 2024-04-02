@@ -45,7 +45,8 @@ in {
     kanata
     fcitx5-openbangla-keyboard
     electron
-    kstars
+    # kstars
+    
     neovim
     upower
     ;

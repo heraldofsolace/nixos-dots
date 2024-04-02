@@ -15,12 +15,12 @@ _: {
     src = pkgs.fetchFromGitHub {
       owner = "gpakosz";
       repo = ".tmux";
-      rev = "5641d3b3f5f9c353c58dfcba4c265df055a05b6b";
-      sha256 = "sha256-BTeej1vzyYx068AnU8MjbQKS9veS2jOS+CaJazCtP6s=";
+      rev = "a795f9ec5167234c60f16a5390f199ec34833ea6";
+      sha256 = "sha256-++AN5looD4yE/TBlAxCiJFbGXL+8v/+UsEvw+WddpCw=";
       stripRoot = false;
     };
 
-    version = "5641d3b3f5f9c353c58dfcba4c265df055a05b6b";
+    version = "a795f9ec5167234c60f16a5390f199ec34833ea6";
 
     nativeBuildInputs = [pkgs.gnused];
 
@@ -49,10 +49,10 @@ in {
     terminal = "xterm-256color";
 
     plugins = with pkgs; [
-      # tmuxPlugins.cpu
+      tmuxPlugins.cpu
       {
         plugin = tmuxPlugins.resurrect;
-        # extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
       }
       {
         plugin = tmuxPlugins.continuum;
