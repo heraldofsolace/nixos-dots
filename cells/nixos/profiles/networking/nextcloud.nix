@@ -25,6 +25,7 @@ _: {
     globalProfiles = true;
     maxUploadSize = "5G";
     notify_push.enable = true;
+    configureRedis = true;
   };
 
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {

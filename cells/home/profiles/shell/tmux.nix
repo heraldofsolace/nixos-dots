@@ -6,7 +6,7 @@ _: {
 }: let
   oh-my-tmux-conf = "oh-my-tmux.conf";
   oh-my-tmux-conf-path = "${config.xdg.configHome}/${oh-my-tmux-conf}";
-  oh-tmux-conf-local = "oh-my-tmux-local.conf";
+  oh-tmux-conf-local = "${oh-my-tmux-conf}.local";
   oh-tmux-conf-local-path = "${config.xdg.configHome}/${oh-tmux-conf-local}";
 
   oh-my-tmux = pkgs.stdenvNoCC.mkDerivation rec {
@@ -29,7 +29,7 @@ _: {
 
     installPhase = ''
       mkdir -p $out
-      sed -e 's/~\/.tmux.conf.local/${builtins.replaceStrings ["/"] ["\\/"] oh-tmux-conf-local-path}/g' -e 's/~\/.tmux.conf/${builtins.replaceStrings ["/"] ["\\/"] oh-my-tmux-conf-path}/g' .tmux-*/.tmux.conf > $out/.tmux.conf
+      sed -e 's/$HOME\/.tmux.conf/${builtins.replaceStrings ["/"] ["\\/"] oh-my-tmux-conf-path}/g' .tmux-*/.tmux.conf > $out/.tmux.conf
     '';
 
     meta = with lib; {

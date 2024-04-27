@@ -53,6 +53,7 @@
       dev.node
       dev.rust
       dev.go
+      dev.ruby
     ];
 
     develop-gui = [
