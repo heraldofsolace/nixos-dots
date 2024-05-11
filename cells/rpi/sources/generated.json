@@ -41,7 +41,7 @@
     },
     "mediamtx": {
         "cargoLocks": null,
-        "date": "2024-04-29",
+        "date": "2024-05-09",
         "extract": null,
         "name": "mediamtx",
         "passthru": null,
@@ -53,10 +53,10 @@
             "name": null,
             "owner": "bluenviron",
             "repo": "mediamtx",
-            "rev": "8b51ca9c8b0ac4639556e3704216ba5b42231058",
-            "sha256": "sha256-YWIcGXG66VaXgWXtNlMzS/ShZzE8vh5ePwbYyLbtPcM=",
+            "rev": "6debb52abdf86c7c9fabcc2283e4e57ad8590c27",
+            "sha256": "sha256-SRUwN18goDRoFldYyPmJTriLgcDqYQb/DMtzMvt5jRw=",
             "type": "github"
         },
-        "version": "8b51ca9c8b0ac4639556e3704216ba5b42231058"
+        "version": "6debb52abdf86c7c9fabcc2283e4e57ad8590c27"
     }
 }
