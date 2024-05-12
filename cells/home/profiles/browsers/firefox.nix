@@ -7,8 +7,6 @@ _: {pkgs, ...}: {
       isDefault = true;
       settings = {"browser.startup.homepage" = "https://google.com";};
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        # https-everywhere
-        privacy-badger
         addy_io
         buster-captcha-solver
         c-c-search-extension
@@ -18,20 +16,16 @@ _: {pkgs, ...}: {
         enhanced-github
         forget_me_not
         grammarly
-        mailvelope
         multi-account-containers
         onepassword-password-manager
         peertubeify
         plasma-integration
         sourcegraph
         sponsorblock
-        terms-of-service-didnt-read
         ublock-origin
         umatrix
-        # bypass-paywalls-clean
         dictionaries
         enhancer-for-youtube
-        facebook-container
         firenvim
         french-dictionary
         french-language-pack
@@ -39,20 +33,19 @@ _: {pkgs, ...}: {
         gesturefy
         greasemonkey
         hover-zoom-plus
-        istilldontcareaboutcookies
         image-search-options
         js-search-extension
         link-gopher
-        momentumdash
         mullvad
         octolinker
         promnesia
-        raindropio
         return-youtube-dislikes
         stylus
         to-deepl
         video-downloadhelper
         youtube-nonstop
+        private-relay
+        pronoundb
       ];
     };
   };

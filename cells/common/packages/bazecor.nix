@@ -40,15 +40,14 @@ appimageTools.wrapAppImage rec {
   # to allow non-root modifications to the keyboards.
 
   extraInstallCommands = ''
-    mv $out/bin/bazecor-* $out/bin/bazecor
-    mkdir -p $out/lib/udev/rules.d
-    ln -s --target-directory=$out/lib/udev/rules.d ${./_files/10-dygma.rules}
-
-     # Now, install assets such as the desktop file and icons
     install -m 444 -D ${src}/Bazecor.desktop -t $out/share/applications
     substituteInPlace $out/share/applications/Bazecor.desktop \
-      --replace 'Exec=Bazecor %U' 'Exec=bazecor'
-    cp -r ${src}/usr/share/icons $out/share
+      --replace 'Exec=Bazecor' 'Exec=bazecor'
+
+    install -m 444 -D ${src}/bazecor.png -t $out/share/pixmaps
+
+    mkdir -p $out/lib/udev/rules.d
+    ln -s --target-directory=$out/lib/udev/rules.d ${./_files/10-dygma.rules}
   '';
 
   meta = {

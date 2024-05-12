@@ -7,6 +7,10 @@
     withNodeJs = true;
     withRuby = true;
     withPython3 = true;
+    extraPython3Packages = ps:
+      with ps; [
+        setuptools
+      ];
     extraConfig = ''
       lua require('start')
     '';

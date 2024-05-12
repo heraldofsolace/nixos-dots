@@ -20,7 +20,9 @@ in {
     kubernetes-helm
     nixpkgs-fmt
     statix
-    nixUnstable
+    nix
+    nix-diff
+    act
     cachix
     nix-index
     _1password
@@ -49,5 +51,6 @@ in {
     
     neovim
     upower
+    gamemode
     ;
 }
