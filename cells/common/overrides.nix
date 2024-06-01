@@ -20,7 +20,8 @@ in {
     kubernetes-helm
     nixpkgs-fmt
     statix
-    nix
+    # nix
+    
     nix-diff
     act
     cachix
@@ -50,6 +51,7 @@ in {
     # kstars
     
     neovim
+    wrapNeovimUnstable
     upower
     gamemode
     ;

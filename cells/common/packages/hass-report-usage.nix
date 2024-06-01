@@ -2,7 +2,6 @@
 writeShellApplication {
   name = "hass-report-usage";
   text = ''
-      #!/usr/bin/env bash
       # Abort if another instance is already running.
       if [ -e /dev/shm/in_use.pid ]; then
         read -r PID < /dev/shm/in_use.pid

@@ -74,6 +74,7 @@
       browsers.brave
       comms.chat
       desktop.kdeconnect
+      desktop.theme
       misc.join
     ];
 
@@ -111,9 +112,16 @@ in {
         education
         audio
         keyboards
+        inputs.aniVim.homeModule
       ];
   };
-  minimal = {...}: {imports = suites.base;};
+  minimal = {...}: {
+    imports = with suites;
+      l.flatten [
+        base
+        inputs.aniVim.homeModule
+      ];
+  };
   server-dev = {...}: {
     imports = with suites;
       l.flatten [
@@ -139,6 +147,7 @@ in {
         office
         system
         media
+        # inputs.stylix.homeManagerModules.stylix
       ];
   };
 }

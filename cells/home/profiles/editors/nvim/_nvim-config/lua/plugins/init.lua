@@ -1,28 +1,28 @@
 return require('lazy').setup({
      {
-        'b3nj5m1n/kommentary',
+        'b3nj5m1n/kommentary', ## vim
         config = function()
             require('kommentary.config').use_extended_mappings()
         end
     },
-     'sheerun/vim-polyglot',
-     'arecarn/vim-crunch',
+     'sheerun/vim-polyglot', ## vim
+     'arecarn/vim-crunch', ## no
      'christoomey/vim-tmux-navigator',
      'wellle/context.vim',
-     'gcmt/wildfire.vim',
+     'gcmt/wildfire.vim', ## vim
      {
-        'glacambre/firenvim',
+        'glacambre/firenvim', ## vim
         build = function() vim.fn['firenvim#install'](0) end
     },
      {
-        'npxbr/glow.nvim',
+        'npxbr/glow.nvim', ## vim
         build = ':GlowInstall',
         cmd = "Glow",
         init = function()
             require('plugins.configs.glow_setup')
         end
     },
-     'junegunn/vim-peekaboo',
+     'junegunn/vim-peekaboo', ##vim
      {
         'lervag/vimtex',
         config = function()

@@ -5,20 +5,24 @@
   inherit (inputs) nixpkgs std haumea;
   l = nixpkgs.lib // builtins;
   profiles = cell.nixosProfiles;
+  nixosModules = cell.nixosModules;
+  modulesImportables = l.attrValues nixosModules;
   users = inputs.cells.home.users.nixos;
 in
   # with cell.darwinProfiles;
   {
     base = _: {
-      imports = [
-        profiles.core
-        users.aniket
-        users.root
-        users.hass
-        users.nextcloud
-        users.nginx
-        inputs.cells.secrets.nixosProfiles.secrets
-      ];
+      imports =
+        [
+          profiles.core
+          users.aniket
+          users.root
+          users.hass
+          users.nextcloud
+          users.nginx
+          inputs.cells.secrets.nixosProfiles.secrets
+        ]
+        ++ modulesImportables;
     };
     miranda = _: {
       imports = [

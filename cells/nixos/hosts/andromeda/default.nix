@@ -12,6 +12,7 @@ in {
     profiles.astronomy
     profiles.desktop.plasma
     profiles.gaming.steam
+    profiles.gaming.retroarch
     profiles.misc.gparted
     profiles.misc.hass
     profiles.misc.op
@@ -23,9 +24,11 @@ in {
     profiles.services.postgres
     profiles.services.mariadb
     profiles.services.virtualbox
-    inputs.grub2-themes.nixosModules.default
+    # inputs.grub2-themes.nixosModules.default
     ./_hardware-configuration.nix
     ./_zfs.nix
+    inputs.stylix.nixosModules.stylix
+    profiles.desktop.colors
   ];
 
   bee.system = system;
@@ -34,6 +37,7 @@ in {
     inherit system;
     config.allowUnfree = true;
     overlays = with inputs.cells.common.overlays; [
+      inputs.lix-module.overlays.default
       common-packages
       latest-overrides
       nur

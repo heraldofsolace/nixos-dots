@@ -39,22 +39,23 @@
     "/dev/disk/by-id/ata-ST1000DM010-2EP102_ZN10JDQ3"
   ];
 
-  boot.loader.grub2-theme = {
-    enable = true;
-    theme = "tela";
-    screen = "2k";
-    footer = true;
-  };
+  # boot.loader.grub2-theme = {
+  #   enable = true;
+  #   theme = "tela";
+  #   screen = "2k";
+  #   footer = true;
+  # };
 
   services.zfs = {
     autoScrub.enable = true;
+    trim.enable = true;
     autoSnapshot = {
       enable = true;
       frequent = 1;
-      hourly = 1;
       daily = 1;
-      monthly = 1;
+      hourly = 1;
       weekly = 1;
+      monthly = 1;
     };
     # TODO: autoReplication
   };

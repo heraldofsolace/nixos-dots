@@ -8,7 +8,8 @@
   inherit
     (inputs.cells.common.overrides)
     alejandra
-    nix
+    # nix
+    
     cachix
     nix-index
     statix
@@ -23,6 +24,7 @@
     editorconfig-checker
     mdbook
     gnupg
+    nix
     ;
 
   pkgWithCategory = category: package: {inherit package category;};
@@ -38,7 +40,7 @@
     function updateCellSources {
       CELL="$1"
       shift
-      ${nvfetcher}/bin/nvfetcher -t --keep-old -o "$CELL/sources/" -c "$CELL/sources/nvfetcher.toml" $@
+      ${nvfetcher}/bin/nvfetcher -t -o "$CELL/sources/" -c "$CELL/sources/nvfetcher.toml" $@
     }
 
     export TMPDIR="/tmp"

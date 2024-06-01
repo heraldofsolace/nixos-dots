@@ -8,6 +8,7 @@ title = "My NixOS Configuration"
 build-dir = "docs/build"
 
 [output]
+
 [output.html]
 
 [output.linkcheck]

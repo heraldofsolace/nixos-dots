@@ -2,8 +2,8 @@
   description = "My NixOS dotfiles";
 
   nixConfig.extra-experimental-features = "nix-command flakes";
-  nixConfig.extra-substituters = "https://nrdxp.cachix.org https://nix-community.cachix.org";
-  nixConfig.extra-trusted-public-keys = "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
+  nixConfig.extra-substituters = "https://nrdxp.cachix.org https://nix-community.cachix.org https://cache.lix.systems";
+  nixConfig.extra-trusted-public-keys = "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o=";
 
   # common for deduplication
   inputs = {
@@ -47,6 +47,15 @@
         nixpkgs.follows = "nixpkgs";
         colmena.follows = "colmena";
       };
+    };
+    lix = {
+      url = "git+https://git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
+      flake = false;
+    };
+    lix-module = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -115,13 +124,17 @@
       url = "github:nix-community/impermanence";
     };
     nur.url = "github:nix-community/NUR";
+    stylix = {
+      url = "github:heraldofsolace/stylix/release-23.11";
+    };
+    aniVim.url = "github:heraldofsolace/aniVim";
   };
 
   # nixpkgs & home-manager
   inputs = {
-    latest.url = "github:nixos/nixpkgs/nixos-unstable";
-    k8s.url = "github:nixos/nixpkgs/3005f20ce0aaa58169cdee57c8aa12e5f1b6e1b3";
-    nixos.url = "github:nixos/nixpkgs/release-23.11";
+    latest.url = "github:NixOS/nixpkgs/nixos-unstable";
+    k8s.url = "github:NixOS/nixpkgs/3005f20ce0aaa58169cdee57c8aa12e5f1b6e1b3";
+    nixos.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs.follows = "nixos";
 
     home = {
@@ -153,6 +166,7 @@
     std,
     nixpkgs,
     hive,
+    lix-module,
     ...
   } @ inputs:
     std.growOn {
@@ -217,6 +231,7 @@
         ["tailscale" "nixosModules"]
         ["klipper" "nixosModules"]
         ["k8s" "nixosModules"]
+        ["stylix-shim" "nixosModules"]
       ];
 
       homeModules = hive.pick inputs.self [

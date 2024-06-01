@@ -1,6 +1,6 @@
 {
   programs.neovim = {
-    enable = true;
+    enable = false;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
@@ -19,5 +19,9 @@
   xdg.configFile."nvim" = {
     source = ./_nvim-config;
     recursive = true;
+  };
+
+  aniVim = {
+    enable = true;
   };
 }
