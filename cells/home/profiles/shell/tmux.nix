@@ -54,16 +54,28 @@ in {
         plugin = tmuxPlugins.resurrect;
         extraConfig = "set -g @resurrect-strategy-nvim 'session'";
       }
-      {
-        plugin = tmuxPlugins.continuum;
-        extraConfig = ''
-          set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '10' # minutes
-        '';
-      }
+      tmuxPlugins.copycat
+      tmuxPlugins.yank
     ];
     tmuxinator.enable = true;
-    extraConfig = ''
+    extraConfig = with config.lib.stylix.colors.withHashtag; ''
+      tmux_conf_theme_colour_1="${base00}00"    # dark gray
+      tmux_conf_theme_colour_2="${base01}"    # gray
+      tmux_conf_theme_colour_3="${base02}"    # light gray
+      tmux_conf_theme_colour_4="${base03}"    # light blue
+      tmux_conf_theme_colour_5="${base04}"    # yellow
+      tmux_conf_theme_colour_6="${base05}"    # dark gray
+      tmux_conf_theme_colour_7="${base06}"    # white
+      tmux_conf_theme_colour_8="${base07}"    # dark gray
+      tmux_conf_theme_colour_9="${base08}"    # yellow
+      tmux_conf_theme_colour_10="${base09}"   # pink
+      tmux_conf_theme_colour_11="${base0A}"   # green
+      tmux_conf_theme_colour_12="${base0B}"   # light gray
+      tmux_conf_theme_colour_13="${base0C}"   # white
+      tmux_conf_theme_colour_14="${base0D}"   # dark gray
+      tmux_conf_theme_colour_15="${base0E}"   # dark gray
+      tmux_conf_theme_colour_16="${base0F}"   # red
+      tmux_conf_theme_colour_17="#e4e4e4"   # white
       source-file "${oh-my-tmux-conf-path}";
     '';
   };

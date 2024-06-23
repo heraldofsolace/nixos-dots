@@ -4,8 +4,8 @@
 }: let
   inherit (inputs) nixpkgs std haumea;
   l = nixpkgs.lib // builtins;
-  userProfiles = cell.userProfiles;
-  homeModules = cell.homeModules;
+  inherit (cell) userProfiles;
+  inherit (cell) homeModules;
   modulesImportables = l.attrValues homeModules;
 in {
   nixos = {
@@ -49,7 +49,7 @@ in {
       config,
       ...
     }: {
-      home-manager.users.aniket-miranda = _: {
+      home-manager.users.aniket = _: {
         imports = with userProfiles;
           [minimal server-dev] ++ modulesImportables;
         programs.git.extraConfig = {
@@ -64,7 +64,7 @@ in {
         home.stateVersion = "23.05";
       };
 
-      users.users.aniket-miranda = {
+      users.users.aniket = {
         hashedPasswordFile = config.sops.secrets.aniket-password.path;
         description = "Aniket Bhattacharyea";
         isNormalUser = true;

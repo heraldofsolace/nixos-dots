@@ -10,7 +10,7 @@
       deployment.allowLocalDeployment = true;
     };
     miranda = {
-      deployment.targetUser = "aniket-miranda";
+      deployment.targetUser = "aniket";
     };
   };
 in
@@ -28,9 +28,7 @@ in
           };
         }
         (
-          if overrides ? "${name}"
-          then overrides."${name}"
-          else {}
+          overrides."${name}" or {}
         )
       )
   )

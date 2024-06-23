@@ -21,6 +21,8 @@ in {
     profiles.services.virtualbox
     inputs.grub2-themes.nixosModules.default
     ./_hardware-configuration.nix
+    inputs.stylix.nixosModules.stylix
+    profiles.desktop.colors
   ];
 
   bee.system = system;

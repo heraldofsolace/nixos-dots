@@ -13,8 +13,15 @@ in
   l.mapAttrs (
     _: v:
       if v == ./packages/pixinsight.nix
-      then nixpkgs.libsForQt5.callPackage v {inherit sources;}
-      else nixpkgs.callPackage v {inherit sources;}
+      then
+        nixpkgs.libsForQt5.callPackage v {
+          inherit sources;
+        }
+      else
+        nixpkgs.callPackage v {
+          inherit sources;
+          inherit inputs;
+        }
   )
   (
     haumea.lib.load {

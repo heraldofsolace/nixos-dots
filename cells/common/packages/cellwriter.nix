@@ -23,7 +23,7 @@ gcc8Stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "Grid-entry natural handwriting input panel";
-    homepage = https://github.com/risujin/cellwriter;
+    homepage = "https://github.com/risujin/cellwriter";
     license = licenses.gpl2Plus;
     platforms = platforms.linux;
   };

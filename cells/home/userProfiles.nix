@@ -26,7 +26,6 @@
     shell-extras = with shell; [
       bat
       cli
-      eww
       gpg
       jq
       mcfly
@@ -35,7 +34,6 @@
       less
       navi
       nushell
-      pywal
       # sagemath
     ];
 
@@ -75,6 +73,10 @@
       comms.chat
       desktop.kdeconnect
       desktop.theme
+      desktop.hyprland
+      # desktop.rofi
+      # desktop.waybar
+      # desktop.ags
       misc.join
     ];
 
@@ -148,6 +150,7 @@ in {
         system
         media
         # inputs.stylix.homeManagerModules.stylix
+        inputs.ags.homeManagerModules.default
       ];
   };
 }

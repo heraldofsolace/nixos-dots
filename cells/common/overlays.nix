@@ -7,4 +7,5 @@
   nur = inputs.nur.overlay;
   agenix = inputs.agenix.overlays.default;
   nvfetcher = inputs.nvfetcher.overlays.default;
+  hyprland-contrib = inputs.hyprland-contrib.overlays.default;
 }

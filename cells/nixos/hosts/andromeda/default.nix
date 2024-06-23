@@ -11,6 +11,8 @@ in {
     profiles.docker
     profiles.astronomy
     profiles.desktop.plasma
+    profiles.desktop.hyprland
+    profiles.desktop.swww
     profiles.gaming.steam
     profiles.gaming.retroarch
     profiles.misc.gparted

@@ -7,10 +7,7 @@
   config,
   self,
   ...
-}: let
-  inherit (lib) fileContents;
-  inherit (pkgs.stdenv.hostPlatform) isDarwin;
-in {
+}: {
   imports = [
     common.core
     common.cachix
@@ -74,18 +71,8 @@ in {
       vim
       openalSoft
       comma
-      vlc
-      kdenlive
       mediainfo
       ffmpeg-full
-      audacity
-      xsane
-      dosfstools
-      gptfdisk
-      usbutils
-      wine
-      winetricks
-      obsidian
     ];
     shells = [pkgs.fish];
   };

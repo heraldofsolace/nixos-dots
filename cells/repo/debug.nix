@@ -10,6 +10,6 @@
 
   sources = nixpkgs.callPackage ./sources/generated.nix {};
 in {
-  inputs = inputs;
+  inherit inputs;
   registry = l.mapAttrs (_: v: {flake = v;}) inputs;
 }

@@ -6,7 +6,7 @@
   pkgs,
   ...
 }: let
-  overrides = inputs.cells.common.overrides;
+  inherit (inputs.cells.common) overrides;
 in {
   programs.vscode.userSettings = {
     "[terraform]" = {

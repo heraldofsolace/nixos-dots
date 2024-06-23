@@ -4,7 +4,7 @@
 }: let
   inherit (inputs) haumea nixpkgs;
   l = nixpkgs.lib // builtins;
-  cells = inputs.cells;
+  inherit (inputs) cells;
 in
   haumea.lib.load {
     src = ./hosts;
@@ -18,9 +18,9 @@ in
         cell.nixosProfiles
         // {
           common = cells.common.commonProfiles;
-          secrets = cells.secrets.nixosProfiles.secrets;
+          inherit (cells.secrets.nixosProfiles) secrets;
           users = cells.home.users.nixos;
         };
-      userProfiles = cells.home.userProfiles;
+      inherit (cells.home) userProfiles;
     };
   }

@@ -1,5 +1,5 @@
 {
   programs.pywal = {
-    enable = true;
+    enable = false;
   };
 }

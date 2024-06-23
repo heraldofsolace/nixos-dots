@@ -125,20 +125,29 @@
     };
     nur.url = "github:nix-community/NUR";
     stylix = {
-      url = "github:heraldofsolace/stylix/release-23.11";
+      # url = "github:heraldofsolace/stylix";
+      url = "git+file:///home/aniket/stylix";
     };
     aniVim.url = "github:heraldofsolace/aniVim";
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    swww.url = "github:LGFae/swww";
+    ags.url = "github:Aylur/ags";
+    matugen.url = "github:InioX/matugen?ref=v2.2.0";
+    asztal.url = "github:Aylur/dotfiles";
   };
 
   # nixpkgs & home-manager
   inputs = {
     latest.url = "github:NixOS/nixpkgs/nixos-unstable";
     k8s.url = "github:NixOS/nixpkgs/3005f20ce0aaa58169cdee57c8aa12e5f1b6e1b3";
-    nixos.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixos.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs.follows = "nixos";
 
     home = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -5,7 +5,7 @@
   inherit (inputs) nixpkgs std haumea;
   l = nixpkgs.lib // builtins;
   profiles = cell.nixosProfiles;
-  nixosModules = cell.nixosModules;
+  inherit (cell) nixosModules;
   modulesImportables = l.attrValues nixosModules;
   users = inputs.cells.home.users.nixos;
 in

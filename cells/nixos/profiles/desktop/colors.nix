@@ -1,28 +1,40 @@
 _: {pkgs, ...}: {
   stylix = {
-    image = ./_files/wallpaper.jpg;
+    image = ./_files/wall.png;
     polarity = "dark";
-
+    # base16Scheme = ./_files/tokyonight.yaml;
     fonts = {
       serif = {
         package = pkgs.nerdfonts;
-        name = "Nerdfonts Serif";
+        name = "Iosevka Serif";
       };
 
       sansSerif = {
         package = pkgs.nerdfonts;
-        name = "Nerdfonts Sans";
+        name = "Iosevka Sans";
       };
 
       monospace = {
         package = pkgs.nerdfonts;
-        name = "Nerdfonts Sans Mono";
+        name = "JetBrains Mono";
       };
 
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
       };
+
+      sizes = {
+        desktop = 14;
+        applications = 14;
+      };
+    };
+
+    opacity = {
+      popups = 0.5;
+      applications = 0.8;
+      desktop = 0.8;
+      terminal = 0.8;
     };
 
     cursor = {
