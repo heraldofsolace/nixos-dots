@@ -15,6 +15,8 @@ in {
     profiles.security.sudo
     profiles.services.postgres
     ./_hardware-configuration.nix
+    inputs.stylix.nixosModules.stylix
+    profiles.desktop.colors
   ];
 
   bee.system = system;
