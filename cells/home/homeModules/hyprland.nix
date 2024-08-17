@@ -277,7 +277,7 @@ in {
           "workspace 7, title:Spotify"
         ];
         "debug:disable_logs" = "false";
-        "misc.force_default_wallpaper" = 0;
+        "misc:force_default_wallpaper" = 0;
       };
       wayland.windowManager.hyprland.extraConfig = ''
         # window resize
