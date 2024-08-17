@@ -120,8 +120,8 @@
     };
     nur.url = "github:nix-community/NUR";
     stylix = {
-      # url = "github:heraldofsolace/stylix";
-      url = "git+file:///home/aniket/stylix";
+      url = "github:heraldofsolace/stylix/release-24.05";
+      # url = "git+file:///home/aniket/stylix";
     };
     aniVim.url = "github:heraldofsolace/aniVim";
     hyprland-contrib = {

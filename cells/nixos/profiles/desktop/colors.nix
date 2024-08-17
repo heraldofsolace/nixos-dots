@@ -1,5 +1,6 @@
 _: {pkgs, ...}: {
   stylix = {
+    enable = true;
     image = ./_files/wall.png;
     polarity = "dark";
     base16Scheme = ./_files/tokyonight.yaml;

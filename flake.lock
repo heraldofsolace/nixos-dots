@@ -229,15 +229,15 @@
     "base16-vim": {
       "flake": false,
       "locked": {
-        "lastModified": 1716150083,
-        "narHash": "sha256-ZMhnNmw34ogE5rJZrjRv5MtG3WaqKd60ds2VXvT6hEc=",
-        "owner": "tinted-theming",
+        "lastModified": 1663659192,
+        "narHash": "sha256-uJvaYYDMXvoo0fhBZUhN8WBXeJ87SRgof6GEK2efFT0=",
+        "owner": "chriskempson",
         "repo": "base16-vim",
-        "rev": "6e955d704d046b0dc3e5c2d68a2a6eeffd2b5d3d",
+        "rev": "3be3cd82cd31acfcab9a41bad853d9c68d30478d",
         "type": "github"
       },
       "original": {
-        "owner": "tinted-theming",
+        "owner": "chriskempson",
         "repo": "base16-vim",
         "type": "github"
       }
@@ -1093,11 +1093,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1715930644,
-        "narHash": "sha256-W9pyM3/vePxrffHtzlJI6lDS3seANQ+Nqp+i58O46LI=",
+        "lastModified": 1714981474,
+        "narHash": "sha256-b3/U21CJjCjJKmA9WqUbZGZgCvospO3ArOUTgJugkOY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e3ad5108f54177e6520535768ddbf1e6af54b59d",
+        "rev": "6ebe7be2e67be7b9b54d61ce5704f6fb466c536f",
         "type": "github"
       },
       "original": {
@@ -2641,17 +2641,18 @@
         "nixpkgs": "nixpkgs_13"
       },
       "locked": {
-        "lastModified": 1719242839,
-        "narHash": "sha256-XZgpP5a3ccT9NlHJ8FpDDtxf6+QSfajGvtuSAqCrXAA=",
-        "ref": "refs/heads/master",
-        "rev": "776a4b782a4c6c6737efe403feb24c5b41f3d5b4",
-        "revCount": 385,
-        "type": "git",
-        "url": "file:///home/aniket/stylix"
+        "lastModified": 1723906195,
+        "narHash": "sha256-LEa1MSNKV1ojAlRdLIqLx2HafgFKu7mKNHhmwy+yI8s=",
+        "owner": "heraldofsolace",
+        "repo": "stylix",
+        "rev": "116c0bd0468af2289f293fa801786ada927756b2",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/aniket/stylix"
+        "owner": "heraldofsolace",
+        "ref": "release-24.05",
+        "repo": "stylix",
+        "type": "github"
       }
     },
     "swww": {

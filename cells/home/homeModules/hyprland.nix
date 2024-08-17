@@ -88,7 +88,6 @@ in {
       programs.hyprland-suite.ags.enable = cfg.enableAGS;
 
       services.hyprpaper.enable = lib.mkForce false;
-      stylix.targets.hyprpaper.enable = lib.mkForce false;
 
       xdg.desktopEntries."org.gnome.Settings" = {
         name = "Settings";
