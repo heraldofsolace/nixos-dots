@@ -53,6 +53,8 @@ in {
     ];
   };
 
+  stylix.enable = true;
+
   environment = {
     variables = {
       EDITOR = "vim";

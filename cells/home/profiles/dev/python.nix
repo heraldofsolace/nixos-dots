@@ -3,12 +3,12 @@
   cell,
 }: {pkgs, ...}: {
   home.packages = with pkgs; [
-    python311
-    python311Packages.pip
-    python311Packages.ipython
-    python311Packages.black
-    python311Packages.setuptools
-    python311Packages.pylint
+    python312
+    python312Packages.pip
+    python312Packages.ipython
+    python312Packages.black
+    python312Packages.setuptools
+    python312Packages.pylint
   ];
 
   home.shellAliases = {

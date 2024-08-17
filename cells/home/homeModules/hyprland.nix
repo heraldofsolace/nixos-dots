@@ -86,6 +86,10 @@ in {
       programs.hyprland-suite.hyprlock.enable = cfg.enableHyprlock;
       programs.hyprland-suite.hypridle.enable = cfg.enableHypridle;
       programs.hyprland-suite.ags.enable = cfg.enableAGS;
+
+      services.hyprpaper.enable = lib.mkForce false;
+      stylix.targets.hyprpaper.enable = lib.mkForce false;
+
       xdg.desktopEntries."org.gnome.Settings" = {
         name = "Settings";
         comment = "Gnome Control Center";
@@ -126,7 +130,7 @@ in {
         exec-once =
           [
             "swww-daemon"
-            "swww-schedule -i ${wallpaper-day}#05:00 -i ${wallpaper-night}#17:00"
+            "swww-schedule -i \"${wallpaper-day};05:00\" -i \"${wallpaper-night};17:00\""
             "${pkgs.kwallet-pam}/libexec/pam_kwallet_init"
             "/nix/store/$(ls -la /nix/store | grep polkit-kde-agent | grep '^d' | awk '{print $9}')/libexec/polkit-kde-authentication-agent-1"
           ]
@@ -172,9 +176,9 @@ in {
         in
           [
             "SUPER, Return, exec, ${terminal}"
-            "SUPER ALT, Q, ${e} -t powermenu'"
+            "SUPER ALT, Q, ${e} -t powermenu"
+            "CTRL SHIFT, R,  ${e} quit; ${pkgs.aags}/bin/aags"
             "SUPER, Q, killactive"
-            "$mod, F, exec, firefox"
             "Control&Alt, L, exec, hyprlock"
             "$mod, F, fullscreen,"
             "$mod, G, togglegroup,"
@@ -219,14 +223,16 @@ in {
             "$mod SHIFT ALT, bracketleft, movecurrentworkspacetomonitor, u"
             "$mod SHIFT ALT, bracketright, movecurrentworkspacetomonitor, d"
 
-            "$mod, S, togglespecialworkspace, magic"
-            "$mod, S, movetoworkspace, +0"
-            "$mod, S, togglespecialworkspace, magic"
-            "$mod, S, movetoworkspace, special:magic"
-            "$mod, S, togglespecialworkspace, magic"
+            "$mod, M, togglespecialworkspace, magic"
+            "$mod, M, movetoworkspace, +0"
+            "$mod, M, togglespecialworkspace, magic"
+            "$mod, M, movetoworkspace, special:magic"
+            "$mod, M, togglespecialworkspace, magic"
 
             "SUPER, L,       ${e} -t launcher"
             "SUPER, Tab,     ${e} -t overview"
+            "ALT, Tab, focuscurrentorlast"
+            "CTRL ALT, Delete, exit"
           ]
           ++ workspaces;
         bindl = [
@@ -253,10 +259,25 @@ in {
           "DP-3,2560x1440,-2560x0,1"
           ",preferred,auto,1"
         ];
-        layerrule = [
-          "blur,rofi"
+        windowrule = let
+          f = regex: "float, ^(${regex})$";
+        in [
+          (f "org.gnome.Calculator")
+          (f "org.gnome.Nautilus")
+          (f "pavucontrol")
+          (f "nm-connection-editor")
+          (f "blueberry.py")
+          (f "org.gnome.Settings")
+          (f "org.gnome.design.Palette")
+          (f "Color Picker")
+          (f "xdg-desktop-portal")
+          (f "xdg-desktop-portal-gnome")
+          (f "transmission-gtk")
+          (f "com.github.Aylur.ags")
+          "workspace 7, title:Spotify"
         ];
         "debug:disable_logs" = "false";
+        "misc.force_default_wallpaper" = 0;
       };
       wayland.windowManager.hyprland.extraConfig = ''
         # window resize

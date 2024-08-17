@@ -2,7 +2,7 @@ _: {pkgs, ...}: {
   stylix = {
     image = ./_files/wall.png;
     polarity = "dark";
-    # base16Scheme = ./_files/tokyonight.yaml;
+    base16Scheme = ./_files/tokyonight.yaml;
     fonts = {
       serif = {
         package = pkgs.nerdfonts;

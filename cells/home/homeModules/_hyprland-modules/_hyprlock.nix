@@ -16,7 +16,7 @@ in {
       settings = {
         general = {
           grace = 10;
-          hide_cursor = true;
+          hide_cursor = false;
           no_fade_in = false;
         };
 
@@ -24,7 +24,7 @@ in {
           {
             path = "screenshot";
             blur_passes = 5;
-            blur_size = 8;
+            blur_size = 6;
           }
         ];
 

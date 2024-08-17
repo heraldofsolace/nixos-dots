@@ -36,7 +36,7 @@ in {
       "openssl-1.1.1w"
     ];
   };
-
+  stylix.enable = false;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.enable = true;

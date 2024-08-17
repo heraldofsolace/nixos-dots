@@ -41,5 +41,8 @@ _: {
         "DISPLAY=:0"
       ];
     };
+    Install = {
+      WantedBy = ["default.target"];
+    };
   };
 }

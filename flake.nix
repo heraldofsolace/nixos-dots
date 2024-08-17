@@ -48,13 +48,8 @@
         colmena.follows = "colmena";
       };
     };
-    lix = {
-      url = "git+https://git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
-      flake = false;
-    };
     lix-module = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module";
-      inputs.lix.follows = "lix";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0-rc1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -125,8 +120,8 @@
     };
     nur.url = "github:nix-community/NUR";
     stylix = {
-      url = "github:heraldofsolace/stylix";
-      # url = "git+file:///home/aniket/stylix";
+      # url = "github:heraldofsolace/stylix";
+      url = "git+file:///home/aniket/stylix";
     };
     aniVim.url = "github:heraldofsolace/aniVim";
     hyprland-contrib = {

@@ -25,15 +25,17 @@ in
         ++ modulesImportables;
     };
     miranda = _: {
-      imports = [
-        profiles.core
-        profiles.entertainment.plex
-        profiles.entertainment.jellyfin
-        users.aniket-miranda
-        users.nextcloud
-        users.nginx
-        users.root
-        inputs.cells.secrets.nixosProfiles.secrets
-      ];
+      imports =
+        [
+          profiles.core
+          profiles.entertainment.plex
+          profiles.entertainment.jellyfin
+          users.aniket-miranda
+          users.nextcloud
+          users.nginx
+          users.root
+          inputs.cells.secrets.nixosProfiles.secrets
+        ]
+        ++ modulesImportables;
     };
   }

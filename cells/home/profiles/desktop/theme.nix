@@ -3,6 +3,8 @@ _: {pkgs, ...}: {
     enable = true;
   };
 
+  stylix.targets.tmux.enable = false;
+
   home.packages = with pkgs; [
     morewaita-icon-theme
     gnome.adwaita-icon-theme

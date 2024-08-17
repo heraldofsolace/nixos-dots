@@ -17,7 +17,7 @@ _: {
     "192.168.0.3" = ["pi.hole"];
     "192.168.49.2" = ["my-demo-app.local"];
   };
-
+  services.resolved.enable = true;
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [5555 27183 22];
 
