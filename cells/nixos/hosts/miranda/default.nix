@@ -2,6 +2,7 @@
   inputs,
   suites,
   profiles,
+  lib,
   ...
 }: let
   system = "x86_64-linux";
@@ -34,9 +35,10 @@ in {
     config.permittedInsecurePackages = [
       "electron-25.9.0"
       "openssl-1.1.1w"
+      "nextcloud-27.1.11"
     ];
   };
-  stylix.enable = false;
+  stylix.enable = lib.mkForce false;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.enable = true;

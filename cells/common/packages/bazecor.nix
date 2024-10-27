@@ -6,13 +6,13 @@
 }:
 appimageTools.wrapAppImage rec {
   pname = "bazecor";
-  version = "1.4.4";
+  version = "1.5.0";
 
   src = appimageTools.extract {
     inherit pname version;
     src = fetchurl {
       url = "https://github.com/Dygmalab/Bazecor/releases/download/v${version}/Bazecor-${version}-x64.AppImage";
-      hash = "sha256-ep+3lqWdktyvbTKxfLcPiVq9/5f0xBHwKG1+BxDDBQA=";
+      hash = "sha256-cxDTNtxy2APAjnHw/cVd1/hUazASJs46rCHNGQ/JbSM=";
     };
 
     # Workaround for https://github.com/Dygmalab/Bazecor/issues/370
@@ -33,6 +33,7 @@ appimageTools.wrapAppImage rec {
     (appimageTools.defaultFhsEnvArgs.multiPkgs p)
     ++ [
       p.glib
+      p.mesa
     ];
 
   # Also expose the udev rules here, so it can be used as:

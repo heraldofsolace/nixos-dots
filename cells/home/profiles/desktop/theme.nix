@@ -4,6 +4,8 @@ _: {pkgs, ...}: {
   };
 
   stylix.targets.tmux.enable = false;
+  stylix.targets.hyprland.enable = false;
+  stylix.targets.vscode.enable = false;
 
   home.packages = with pkgs; [
     morewaita-icon-theme

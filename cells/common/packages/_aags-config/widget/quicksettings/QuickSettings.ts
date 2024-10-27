@@ -11,6 +11,7 @@ import { MicMute } from "./widgets/MicMute";
 import { Media } from "./widgets/Media";
 import PopupWindow from "widget/PopupWindow";
 import options from "options";
+import { Wifi } from "widget/networkmenu/wifi/index";
 
 const { bar, quicksettings } = options;
 const media = (await Service.import("mpris")).bind("players");

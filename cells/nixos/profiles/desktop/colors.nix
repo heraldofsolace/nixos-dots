@@ -33,21 +33,9 @@ _: {pkgs, ...}: {
 
     opacity = {
       popups = 0.5;
-      applications = 0.8;
-      desktop = 0.8;
+      applications = 0.5;
+      desktop = 0.5;
       terminal = 0.8;
-    };
-
-    cursor = {
-      package = pkgs.runCommand "moveUp" {} ''
-        mkdir -p $out/share/icons
-        ln -s ${pkgs.fetchzip {
-          url = "https://github.com/ful1e5/fuchsia-cursor/releases/download/v2.0.0/Fuchsia-Pop.tar.gz";
-          hash = "sha256-BvVE9qupMjw7JRqFUj1J0a4ys6kc9fOLBPx2bGaapTk=";
-        }} $out/share/icons/Fuchsia-Pop
-      '';
-      name = "Fuchsia-Pop";
-      size = 32;
     };
   };
 }

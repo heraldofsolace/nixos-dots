@@ -17,6 +17,26 @@ in {
   ];
   options.desktop.hyprland-suite = {
     enable = lib.mkEnableOption "Enable Hyprland suite";
+    plugins = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
+      default = [];
+    };
+
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.hyprland;
+    };
+
+    weztermPackage = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.wezterm;
+    };
+
+    hyprlockPackage = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.hyprlock;
+    };
+
     enableAGS = lib.mkOption {
       type = lib.types.bool;
       default = true;
@@ -76,14 +96,17 @@ in {
         wireplumber
         swww-schedule
         kwallet-pam
+        fzf
       ];
 
       programs.${terminal}.enable = true;
       programs.hyprland-suite.wezterm.enable = cfg.enableWezterm;
+      programs.hyprland-suite.wezterm.package = cfg.weztermPackage;
       programs.hyprland-suite.waybar.enable = cfg.enableWaybar;
       programs.hyprland-suite.rofi.enable = cfg.enableRofi;
       programs.hyprland-suite.hyprshade.enable = cfg.enableHyprshade;
       programs.hyprland-suite.hyprlock.enable = cfg.enableHyprlock;
+      programs.hyprland-suite.hyprlock.package = cfg.hyprlockPackage;
       programs.hyprland-suite.hypridle.enable = cfg.enableHypridle;
       programs.hyprland-suite.ags.enable = cfg.enableAGS;
 
@@ -99,6 +122,7 @@ in {
       };
       wayland.windowManager.hyprland.enable = true;
       wayland.windowManager.hyprland.systemd.variables = ["--all"];
+      wayland.windowManager.hyprland.plugins = cfg.plugins;
       wayland.windowManager.hyprland.settings = let
         # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
         workspaces = builtins.concatLists (builtins.genList (
@@ -121,9 +145,16 @@ in {
         playerctl = "${pkgs.playerctl}/bin/playerctl";
         brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
         wpctl = "${pkgs.wireplumber}/bin/wpctl";
-        wallpaper-day = ./_files/wallpaper-day.gif;
+        wallpaper-day = ./_files/wall.png;
         wallpaper-evening = ./_files/wallpaper-evening.gif;
-        wallpaper-night = ./_files/wallpaper-night.gif;
+        wallpaper-night = ./_files/wall2.png;
+        red = config.lib.stylix.colors.base0F;
+        mauve = config.lib.stylix.colors.base0E;
+        teal = config.lib.stylix.colors.base0D;
+        sapphire = config.lib.stylix.colors.base0C;
+        green = config.lib.stylix.colors.base0B;
+        lavender = config.lib.stylix.colors.base08;
+        blue = config.lib.stylix.colors.base0A;
       in {
         "$mod" = "SUPER";
         exec-once =
@@ -132,10 +163,11 @@ in {
             "swww-schedule -i \"${wallpaper-day};05:00\" -i \"${wallpaper-night};17:00\""
             "${pkgs.kwallet-pam}/libexec/pam_kwallet_init"
             "/nix/store/$(ls -la /nix/store | grep polkit-kde-agent | grep '^d' | awk '{print $9}')/libexec/polkit-kde-authentication-agent-1"
+            "hyprswitch init --show-title &"
           ]
           ++ (
             if cfg.enableAGS
-            then ["aags"]
+            then ["hyprpanel"]
             else []
           );
         exec =
@@ -151,32 +183,192 @@ in {
             ]
             else []
           );
-
         animations = {
           enabled = true;
           animation = [
-            "border, 1, 2, default"
-            "fade, 1, 4, default"
-            "windows, 1, 3, default, popin 80%"
-            "workspaces, 1, 2, default, slide"
+            "windows, 1, 8, md3_decel, slide top"
+            "windowsIn, 1, 8, md3_standard, slide top 0%"
+            "windowsOut, 1, 8, md3_standard, slide top 0%"
+            "windowsMove, 1, 8, md3_standard, slide top 20%"
+            "layersIn, 1, 4, menu_accel, slide top 20%"
+            "layersOut, 1, 4, menu_decel, slide top 20%"
+            "fadeIn, 1, 8, default"
+            "fadeOut, 1, 8, default"
+            "fadeSwitch, 1, 8, default"
+            "fadeShadow, 1, 8, default"
+            "fadeDim, 1, 8, default"
+            "fadeLayersIn, 1, 8, default"
+            "fadeLayersOut, 1, 8, default"
+            "border, 1, 6, linear"
+            "borderangle, 1, 100, linear, loop"
+            #animation = borderangle, 1, 30, linear, once
+            "fadeIn, 1, 10, default"
+            "workspaces, 1, 8, default, slidevert"
+            #animation = workspaces, 1, 5, wind
+          ];
+          bezier = [
+            "linear, 0.0, 0.0, 1.0, 1.0"
+            "md3_standard, 0.2, 0, 0, 1"
+            "md3_decel, 0.05, 0.7, 0.1, 1"
+            "md3_accel, 0.3, 0, 0.8, 0.15"
+            "overshot, 0.05, 0.9, 0.1, 1.1"
+            "crazyshot, 0.1, 1.5, 0.76, 0.92"
+            "hyprnostretch, 0.05, 0.9, 0.1, 1.1"
+            "menu_decel, 0.1, 1, 0, 1"
+            "menu_accel, 0.38, 0.04, 1, 0.07"
+            "easeOutBack, 0.34, 1.3, 0.64, 1"
+            "easeOutExpo, 0.16, 1, 0.3, 1"
+            "popIn, 0.05, 0.9, 0.1, 1.05"
+            "softAcDecel, 0.26, 0.26, 0.15, 1"
+            "md2, 0.4, 0, 0.2, 1"
           ];
         };
 
+        misc = {
+          vrr = 0;
+          disable_hyprland_logo = true;
+          disable_splash_rendering = true;
+          force_default_wallpaper = 0;
+        };
+
+        decoration = {
+          rounding = 20;
+          drop_shadow = true;
+          shadow_offset = "0, 0";
+          shadow_range = 30;
+          shadow_render_power = 3;
+          "col.shadow" = "0x66000000";
+          inactive_opacity = 0.6;
+          active_opacity = 0.9;
+          blur = {
+            enabled = true;
+            size = 15;
+            passes = 4;
+            ignore_opacity = true;
+            new_optimizations = true;
+            xray = false;
+            brightness = 1;
+            noise = 0.01;
+            contrast = 1;
+            popups = true;
+            popups_ignorealpha = 0.6;
+          };
+        };
+
+        general = {
+          gaps_in = 5;
+          gaps_out = 10;
+          border_size = 4;
+          "col.active_border" = "rgb(${lavender}) rgb(${mauve}) rgb(${red}) rgb(${teal}) rgb(${sapphire}) rgb(${green}) rgb(${blue}) 45deg";
+          "col.inactive_border" = "rgba(00000000)";
+          layout = "dwindle";
+          resize_on_border = true;
+        };
+
+        plugin = {
+          borders-plus-plus = {
+            add_borders = 1;
+            "col.border_1" = "rgb(000000)";
+            border_size_1 = 5;
+          };
+        };
+
         group = {
+          "col.border_active" = "rgb(${mauve}) rgb(${red}) rgb(${blue}) 45deg";
+          "col.border_inactive" = "rgb(${green}) rgb(${mauve}) 45deg";
+          "col.border_locked_active" = "rgb(${mauve}) rgb(${blue}) 45deg";
+          "col.border_locked_inactive" = "rgb(${green}) rgb(${mauve}) 45deg";
           groupbar = {
             font_size = 10;
-            gradients = false;
             text_color = "rgb(${config.lib.stylix.colors.base05})";
           };
         };
+
+        windowrulev2 = [
+          "center, title:^(Keybindings)$"
+          "center, class:^(system-monitoring-center)$"
+          "float, class:^(system-monitoring-center)$"
+          "size 1800 1000, class:^(system-monitoring-center)$"
+          "idleinhibit fullscreen, class:^(*)$"
+          "idleinhibit fullscreen, title:^(*)$"
+          "idleinhibit fullscreen, fullscreen:1"
+
+          "float, class:^([Ss]potify|[Ww]aypaper|Dolphin|[Ww]aypaper-engine)$"
+          "center, class:^([Ss]potify|[Ww]aypaper|Dolphin|[Ww]aypaper-engine)$"
+          "size 1800 1000, class:^([Ss]potify|[Ww]aypaper|Dolphin|[Ww]aypape-engine)$"
+          "float, title:Thunar"
+          "center, title:Thunar"
+          "size 1800 1000, title:Thunar"
+          "float, class:^(.*com.github.Aylur.ags*)$"
+          "center, class:^(.*com.github.Aylur.ags*)$"
+          "size 1800 1000, class:^(.*com.github.Aylur.ags*)$"
+          "float, title:Dolphin"
+          "center, title:Dolphin"
+          "size 1800 1000, title:Dolphin"
+
+          "float, class:^(org.kde.polkit-kde-authentication-agent-1)$"
+          "float, class:([Zz]oom|onedriver|onedriver-launcher)$"
+          "float, class:([Tt]hunar), title:(File Operation Progress)"
+          "float, class:([Tt]hunar), title:(Confirm to replace files)"
+          "float, class:(xdg-desktop-portal-gtk)"
+          "float, class:(org.gnome.Calculator), title:(Calculator)"
+          "float, class:(codium|codium-url-handler|VSCodium|code-oss), title:(Add Folder to Workspace)"
+          "float, class:(electron), title:(Add Folder to Workspace)"
+          "float, class:^(nm-applet|nm-connection-editor|blueman-manager)$"
+          "float, class:^(gnome-system-monitor|org.gnome.SystemMonitor|io.missioncenter.MissionCenter)$ " # system monitor
+          "float, title:(Kvantum Manager)"
+          "float, class:^([Ss]team)$,title:^((?![Ss]team).*|[Ss]team [Ss]ettings)$"
+          "float, class:^([Qq]alculate-gtk)$"
+          "float, title:^(Picture-in-Picture)$"
+          # float, title:^(Firefox)$
+
+          # windowrule v2 - opacity #enable as desired
+          "opacity 0.8 0.6, class:^([Ss]potify|[Vv]esktop|[Dd]iscord)$"
+          "opacity 0.9 0.7, class:^(Brave-browser(-beta|-dev)?)$"
+          "opacity 0.9 0.7, class:^([Ff]irefox|org.mozilla.firefox|[Ff]irefox-esr)$"
+          "opacity 0.9 0.8, class:^(google-chrome(-beta|-dev|-unstable)?)$"
+          "opacity 0.94 0.86, class:^(chrome-.+-Default)$ " # Chrome PWAs
+          "opacity 0.9 0.8, class:^([Tt]hunar|org.gnome.Nautilus)$"
+          "opacity 0.9 0.8, class:^(deluge)$"
+          "opacity 0.8 0.7, class:^(Alacritty|kitty|kitty-dropterm)$" # Terminals
+          "opacity 0.9 0.7, class:^(VSCodium|codium-url-handler|code-oss)$"
+          "opacity 0.9 0.8, class:^(nwg-look|qt5ct|qt6ct|[Yy]ad)$"
+          "opacity 0.9 0.8, title:(Kvantum Manager)"
+          "opacity 0.9 0.7, class:^(com.obsproject.Studio)$"
+          "opacity 0.9 0.7, class:^([Aa]udacious)$"
+          "opacity 0.9 0.8, class:^(VSCode|code-url-handler)$"
+          "opacity 0.9 0.8, class:^(jetbrains-.+)$" # JetBrains IDEs
+          "opacity 0.94 0.86, class:^([Dd]iscord|[Vv]esktop)$"
+          "opacity 0.9 0.8, class:^(org.telegram.desktop|io.github.tdesktop_x64.TDesktop)$"
+          "opacity 0.82 0.75, class:^(gnome-system-monitor|org.gnome.SystemMonitor|io.missioncenter.MissionCenter)$"
+          "opacity 0.9 0.8, class:^(xdg-desktop-portal-gtk)$" # gnome-keyring gui
+          "opacity 0.95 0.75, title:^(Picture-in-Picture)$"
+
+          # windowrule v2 - size
+          "size 70% 70%, class:^(gnome-system-monitor|org.gnome.SystemMonitor|io.missioncenter.MissionCenter)$"
+          "size 70% 70%, class:^(xdg-desktop-portal-gtk)$"
+          "size 60% 70%, title:(Kvantum Manager)"
+
+          # size 25% 25%, title:^(Picture-in-Picture)$
+          # size 25% 25%, title:^(Firefox)$
+
+          # windowrule v2 - pinning
+          "pin,title:^(Picture-in-Picture)$"
+          # pin,title:^(Firefox)$
+
+          # windowrule v2 - extras
+          "keepaspectratio, title:^(Picture-in-Picture)$"
+        ];
+
         bind = let
           monocle = "dwindle:no_gaps_when_only";
-          e = "exec, ${pkgs.aags}/bin/aags";
+          e = "exec, ${pkgs.hyprpanel}/bin/hyprpanel";
         in
           [
             "SUPER, Return, exec, ${terminal}"
+            "SUPER ALT, Return, exec, firefox"
             "SUPER ALT, Q, ${e} -t powermenu"
-            "CTRL SHIFT, R,  ${e} quit; ${pkgs.aags}/bin/aags"
+            "SUPER ALT, R,  ${e} quit; ${pkgs.hyprpanel}/bin/hyprpanel"
             "SUPER, Q, killactive"
             "Control&Alt, L, exec, hyprlock"
             "$mod, F, fullscreen,"
@@ -229,8 +421,6 @@ in {
             "$mod, M, togglespecialworkspace, magic"
 
             "SUPER, L,       ${e} -t launcher"
-            "SUPER, Tab,     ${e} -t overview"
-            "ALT, Tab, focuscurrentorlast"
             "CTRL ALT, Delete, exit"
           ]
           ++ workspaces;
@@ -275,8 +465,6 @@ in {
           (f "com.github.Aylur.ags")
           "workspace 7, title:Spotify"
         ];
-        "debug:disable_logs" = "false";
-        "misc:force_default_wallpaper" = 0;
       };
       wayland.windowManager.hyprland.extraConfig = ''
         # window resize
@@ -288,6 +476,47 @@ in {
         binde = , i, resizeactive, 0 -10
         binde = , e, resizeactive, 0 10
         bind = , escape, submap, reset
+        submap = reset
+
+        $key = TAB
+        $modifier = ALT
+        $modifier_release = ALT_L
+        $reverse = SHIFT
+
+        # allows repeated switching with same keypress that starts the submap
+        binde = $modifier, $key, exec, hyprswitch gui --do-initial-execute
+        bind = $modifier, $key, submap, switch
+
+        # allows repeated switching with same keypress that starts the submap
+        binde = $modifier $reverse, $key, exec, hyprswitch gui --do-initial-execute -r
+        bind = $modifier $reverse, $key, submap, switch
+
+        submap = switch
+        # allow repeated window switching in submap (same keys as repeating while starting)
+        binde = $modifier, $key, exec, hyprswitch gui
+        binde = $modifier $reverse, $key, exec, hyprswitch gui -r
+
+        # switch to specific window offset (TODO replace with a more dynamic solution)
+        bind = $modifier, 1, exec, hyprswitch gui --offset=1
+        bind = $modifier, 2, exec, hyprswitch gui --offset=2
+        bind = $modifier, 3, exec, hyprswitch gui --offset=3
+        bind = $modifier, 4, exec, hyprswitch gui --offset=4
+        bind = $modifier, 5, exec, hyprswitch gui --offset=5
+
+        bind = $modifier $reverse, 1, exec, hyprswitch gui --offset=1 -r
+        bind = $modifier $reverse, 2, exec, hyprswitch gui --offset=2 -r
+        bind = $modifier $reverse, 3, exec, hyprswitch gui --offset=3 -r
+        bind = $modifier $reverse, 4, exec, hyprswitch gui --offset=4 -r
+        bind = $modifier $reverse, 5, exec, hyprswitch gui --offset=5 -r
+
+
+        # exit submap and stop hyprswitch
+        bindrt = $modifier, $modifier_release, exec, hyprswitch close
+        bindrt = $modifier, $modifier_release, submap, reset
+
+        # if it somehow doesn't close on releasing $switch_release, escape can kill (doesnt switch)
+        bindr = ,escape, exec, hyprswitch close --kill
+        bindr = ,escape, submap, reset
         submap = reset
       '';
     };

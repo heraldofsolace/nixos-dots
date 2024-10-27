@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 273a841..db4c25e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -16,7 +16,7 @@ option(nanopb_MSVC_STATIC_RUNTIME "Link static runtime libraries" ON)
+
+ set(nanopb_PYTHON_INSTDIR_OVERRIDE "" CACHE PATH "Override the default python installation directory with the given path")
+
+-find_program(nanopb_PROTOC_PATH protoc HINTS generator-bin generator)
++find_program(nanopb_PROTOC_PATH protoc)
+ if(NOT EXISTS ${nanopb_PROTOC_PATH})
+     message(FATAL_ERROR "protoc compiler not found")
+ endif()

@@ -49,6 +49,12 @@
         key = "tailscale";
         sopsFile = ./sops/keys.yaml;
       };
+
+      weatherapi-key = {
+        key = "weatherapi-key";
+        sopsFile = ./sops/keys.yaml;
+        mode = "0444";
+      };
     };
   };
 }

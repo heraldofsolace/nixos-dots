@@ -26,6 +26,7 @@ in {
         github.vscode-pull-request-github
         dbaeumer.vscode-eslint
         esbenp.prettier-vscode
+        enkia.tokyo-night
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {

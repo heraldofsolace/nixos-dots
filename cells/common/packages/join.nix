@@ -5,13 +5,13 @@
 }:
 appimageTools.wrapAppImage rec {
   pname = "join";
-  version = "1.1.2";
+  version = "1.1.3";
 
   src = appimageTools.extract {
     inherit pname version;
     src = fetchurl {
       url = "https://github.com/joaomgcd/JoinDesktop/releases/download/v${version}/Join.Desktop-${version}.AppImage";
-      hash = "sha256-tcM8CCr3XtFIp1ntPO43CgW2UUIKRGAwpDVEgInR5zU=";
+      hash = "sha256-yGmedF8MRdTMp4AFS+aOjftQESoJ5rwoBaLivKBwbHY=";
     };
   };
   extraPkgs = pkgs: with pkgs; [];

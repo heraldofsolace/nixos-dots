@@ -34,13 +34,13 @@
 }:
 stdenv.mkDerivation rec {
   pname = "siril-new2";
-  version = "1.2.1";
+  version = "1.2.4";
 
   src = fetchFromGitLab {
     owner = "free-astro";
     repo = "siril";
     rev = version;
-    hash = "sha256-njvByA8nbG3qHKfv8eX20TrIhngVI0nzIHmhYIN6htE=";
+    hash = "sha256-orNu9qo7sutMUPeIPPhxKETEKbCm4D6nAuo4Hc/8Bdo=";
   };
 
   # patches = [

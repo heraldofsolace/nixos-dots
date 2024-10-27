@@ -1,0 +1,246 @@
+@use "sass:math";
+@use "sass:color";
+@import "./menu.scss";
+
+window#launcher .launcher {
+  background: if(
+    $bar-menus-monochrome,
+    $bar-menus-cards,
+    $bar-menus-menu-launcher-card-color
+  );
+  margin: 1.3em;
+  border-radius: $bar-menus-card_radius;
+  padding: 1.5em;
+  border: $bar-menus-border-size solid
+    if(
+      $bar-menus-monochrome,
+      $bar-menus-border-color,
+      $bar-menus-menu-launcher-border-color
+    );
+  .quicklaunch {
+    // @include spacing;
+
+    button {
+      background: $bar-menus-buttons-default;
+      padding: 0.7em 0em;
+      margin: 0.4em 1.7em;
+      border-radius: $bar-menus-border-radius * 0.5;
+      opacity: 1;
+      transition: border-color 0.2s ease-in-out;
+      transition: opacity 0.3s ease-in-out;
+    }
+  }
+
+  entry {
+    padding: $bar-menus-menu-launcher-entry-padding;
+    margin: $bar-menus-menu-launcher-entry-margin;
+
+    selection {
+      color: $bar-menus-text;
+      background-color: transparent;
+    }
+
+    label,
+    image {
+      color: $primary-color;
+      margin-right: 0.3em;
+    }
+  }
+
+  image.spinner {
+    color: $bar-menus-text;
+    margin-right: 0.3em;
+  }
+
+  separator {
+    margin: 4pt 0;
+    background-color: $bar-menus-popover-border;
+  }
+
+  button.app-item {
+    background: transparent;
+    border-radius: $bar-menus-border-radius * 0.5;
+    color: if(
+      $bar-menus-monochrome,
+      $bar-menus-buttons-text,
+      $bar-menus-menu-launcher-text
+    );
+    min-height: 3em;
+
+    > box {
+      @include spacing(0.5);
+    }
+    padding: 0 (0.5);
+
+    label {
+      font-size: 1.5em;
+      &.title {
+        color: $bar-menus-menu-launcher-text;
+      }
+
+      &.description {
+        font-size: 0.8em;
+        color: transparentize($bar-menus-menu-launcher-text, 0.3);
+      }
+    }
+
+    // image {
+
+    // }
+
+    &:hover,
+    &:focus {
+      background-color: if(
+        $bar-menus-monochrome,
+        $bar-menus-buttons-default,
+        $bar-menus-menu-launcher-item-background
+      );
+      .title {
+        color: if(
+          $bar-menus-monochrome,
+          $bar-menus-buttons-text,
+          $bar-buttons-hover
+        );
+      }
+
+      .description {
+        color: transparentize(
+          if(
+            $bar-menus-monochrome,
+            $bar-menus-buttons-text,
+            $bar-buttons-hover
+          ),
+          0.4
+        );
+      }
+    }
+
+    &:active {
+      background-color: transparentize(
+        if(
+          $bar-menus-monochrome,
+          $bar-menus-buttons-default,
+          $bar-menus-menu-launcher-item-background
+        ),
+        0.5
+      );
+      border-radius: $bar-menus-border-radius * 0.5;
+      box-shadow: inset 0 0 0 0.5 $bar-menus-menu-dashboard-card-color;
+
+      .title {
+        color: if(
+          $bar-menus-monochrome,
+          $bar-menus-buttons-text,
+          $bar-menus-menu-launcher-text
+        );
+      }
+    }
+  }
+
+  button.help,
+  button.nix-item {
+    background: transparent;
+    border-radius: $bar-menus-border-radius * 0.5;
+    color: if(
+      $bar-menus-monochrome,
+      $bar-menus-buttons-text,
+      $bar-menus-menu-launcher-text
+    );
+
+    > box {
+      @include spacing(0.5);
+    }
+    padding: 1em;
+
+    label {
+      color: if(
+        $bar-menus-monochrome,
+        $bar-menus-buttons-text,
+        $bar-menus-menu-launcher-text
+      );
+    }
+
+    .name {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .description {
+      color: transparentize(
+        if(
+          $bar-menus-monochrome,
+          $bar-menus-buttons-text,
+          $bar-menus-menu-launcher-text
+        ),
+        0.3
+      );
+    }
+
+    &:hover,
+    &:focus {
+      background-color: if(
+        $bar-menus-monochrome,
+        $bar-menus-buttons-default,
+        $bar-menus-menu-launcher-item-background
+      );
+      label {
+        color: transparentize(
+          if(
+            $bar-menus-monochrome,
+            $bar-menus-buttons-text,
+            $bar-buttons-hover
+          ),
+          0.3
+        );
+      }
+
+      .name,
+      .version {
+        color: if(
+          $bar-menus-monochrome,
+          $bar-menus-buttons-text,
+          $bar-buttons-hover
+        );
+      }
+
+      .description {
+        color: transparentize(
+          if(
+            $bar-menus-monochrome,
+            $bar-menus-buttons-text,
+            $bar-buttons-hover
+          ),
+          0.3
+        );
+      }
+    }
+  }
+
+  button.sh-item {
+    background: transparent;
+    border-radius: $bar-menus-border-radius * 0.5;
+    color: if(
+      $bar-menus-monochrome,
+      $bar-menus-buttons-text,
+      $bar-menus-menu-launcher-text
+    );
+
+    > box {
+      @include spacing(0.5);
+    }
+    padding: 0.5em;
+
+    &:hover,
+    &:focus {
+      background-color: if(
+        $bar-menus-monochrome,
+        $bar-menus-buttons-default,
+        $bar-menus-menu-launcher-item-background
+      );
+      color: transparentize(
+        if($bar-menus-monochrome, $bar-menus-buttons-text, $bar-buttons-hover),
+        0.3
+      );
+    }
+  }
+}

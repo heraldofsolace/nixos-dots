@@ -14,6 +14,7 @@ import Verification from "widget/powermenu/Verification";
 import { forMonitors } from "lib/utils";
 import { setupQuickSettings } from "widget/quicksettings/QuickSettings";
 import { setupDateMenu } from "widget/datemenu/DateMenu";
+import NetworkMenu from "widget/networkmenu/NetworkMenu";
 
 App.config({
   onConfigParsed: () => {
@@ -37,5 +38,6 @@ App.config({
     PowerMenu(),
     SettingsDialog(),
     Verification(),
+    NetworkMenu(),
   ],
 });

@@ -6,6 +6,7 @@
   swww,
   esbuild,
   dart-sass,
+  waypaper,
   fd,
   fzf,
   brightnessctl,
@@ -62,6 +63,7 @@
   dependencies = [
     which
     dart-sass
+    waypaper
     fd
     fzf
     brightnessctl
@@ -85,7 +87,7 @@
       else at) (builtins.attrNames att));
 
   colorsFlattened = flattenSet colors;
-  substituteColors = fcol: builtins.concatStringsSep ";" (map (p: "substituteInPlace ./options.ts --replace '${p}' '${(l.getAttrFromPath (l.splitString "." p) colors)}'") fcol);
+  substituteColors = fcol: builtins.concatStringsSep ";" (map (p: "substituteInPlace ./options.ts --replace-fail '${p}' '${(l.getAttrFromPath (l.splitString "." p) colors)}'") fcol);
 
   greeter = writeShellScript "greeter" ''
     export PATH=$PATH:${addBins dependencies}

@@ -54,5 +54,15 @@ in {
     wrapNeovimUnstable
     upower
     gamemode
+    criterion
+    power-profiles-daemon
     ;
+
+  nanopb-generator-out = latest.nanopb-generator-out.overrideAttrs (oldAttrs: {
+    patches =
+      oldAttrs.patches
+      ++ [
+        ./_files/nanopb-generator-out.patch
+      ];
+  });
 }

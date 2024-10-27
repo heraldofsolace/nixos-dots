@@ -124,10 +124,20 @@
       # url = "git+file:///home/aniket/stylix";
     };
     aniVim.url = "github:heraldofsolace/aniVim";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "latest";
+    };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprswitch.url = "github:h3rmt/hyprswitch/release";
     swww.url = "github:LGFae/swww";
     ags.url = "github:Aylur/ags";
     matugen.url = "github:InioX/matugen?ref=v2.2.0";

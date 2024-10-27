@@ -4,7 +4,7 @@ _: {
   ...
 }: {
   networking.networkmanager.enable = true;
-
+  # networking.resolvconf.enable = false;
   networking.hosts = {
     "192.168.0.1" = ["router.home"];
     "192.168.0.3" = ["pi.hole"];
@@ -13,14 +13,14 @@ _: {
   networking.wireless.iwd.enable = true;
   networking.networkmanager.wifi.backend = "iwd";
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [5555 27183 22];
+  networking.firewall.allowedTCPPorts = [5555 27183 22 5353];
   networking.useDHCP = lib.mkDefault true;
   networking.dhcpcd.wait = "background";
   networking.dhcpcd.extraConfig = "noarp";
 
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
     openFirewall = true;
     publish = {
       enable = true;

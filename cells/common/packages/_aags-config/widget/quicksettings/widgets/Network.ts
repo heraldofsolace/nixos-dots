@@ -1,8 +1,10 @@
 import { Menu, ArrowToggleButton } from "../ToggleButton";
 import icons from "lib/icons.js";
-import { dependencies, sh } from "lib/utils";
+import { dependencies, sh, openMenu } from "lib/utils";
 import options from "options";
 const { wifi } = await Service.import("network");
+import Gdk from "gi://Gdk?version=3.0";
+import { Wifi } from "widget/networkmenu/wifi/index";
 
 export const NetworkToggle = () =>
   ArrowToggleButton({
@@ -22,49 +24,59 @@ export const WifiSelection = () =>
     name: "network",
     icon: wifi.bind("icon_name"),
     title: "Wifi Selection",
-    content: [
-      Widget.Box({
-        vertical: true,
-        setup: (self) =>
-          self.hook(
-            wifi,
-            () =>
-              (self.children = wifi.access_points
-                .sort((a, b) => b.strength - a.strength)
-                .slice(0, 10)
-                .map((ap) =>
-                  Widget.Button({
-                    on_clicked: () => {
-                      if (dependencies("nmcli"))
-                        Utils.execAsync(
-                          `nmcli device wifi connect ${ap.bssid}`,
-                        );
-                    },
-                    child: Widget.Box({
-                      children: [
-                        Widget.Icon(ap.iconName),
-                        Widget.Label(ap.ssid || ""),
-                        Widget.Icon({
-                          icon: icons.ui.tick,
-                          hexpand: true,
-                          hpack: "end",
-                          setup: (self) =>
-                            Utils.idle(() => {
-                              if (!self.is_destroyed) self.visible = ap.active;
-                            }),
-                        }),
-                      ],
-                    }),
-                  }),
-                )),
-          ),
-      }),
-      Widget.Separator(),
-      Widget.Button({
-        on_clicked: () => sh(options.quicksettings.networkSettings.value),
-        child: Widget.Box({
-          children: [Widget.Icon(icons.ui.settings), Widget.Label("Network")],
-        }),
-      }),
-    ],
+    content: [Wifi()],
   });
+// Menu({
+//   name: "network",
+//   icon: wifi.bind("icon_name"),
+//   title: "Wifi Selection",
+//   content: [
+//     Widget.Box({
+//       vertical: true,
+//       setup: (self) =>
+//         self.hook(
+//           wifi,
+//           () =>
+//             (self.children = wifi.access_points
+//               .sort((a, b) => b.strength - a.strength)
+//               .slice(0, 10)
+//               .map((ap) =>
+//                 Widget.Button({
+//                   // on_clicked: () => {
+//                   //   // if (dependencies("nmcli"))
+//                   //   //   Utils.execAsync(
+//                   //   //     `nmcli device wifi connect ${ap.bssid}`,
+//                   //   //   );
+//                   //   openMenu("networkmenu");
+//                   // },
+//                   on_primary_click: (clicked: any, event: Gdk.Event) => {
+//                     openMenu(clicked, event, "networkmenu");
+//                   },
+//                   child: Widget.Box({
+//                     children: [
+//                       Widget.Icon(ap.iconName),
+//                       Widget.Label(ap.ssid || ""),
+//                       Widget.Icon({
+//                         icon: icons.ui.tick,
+//                         hexpand: true,
+//                         hpack: "end",
+//                         setup: (self) =>
+//                           Utils.idle(() => {
+//                             if (!self.is_destroyed) self.visible = ap.active;
+//                           }),
+//                       }),
+//                     ],
+//                   }),
+//                 }),
+//               )),
+//         ),
+//     }),
+//     Widget.Separator(),
+//     Widget.Button({
+//       on_clicked: () => sh(options.quicksettings.networkSettings.value),
+//       child: Widget.Box({
+//         children: [Widget.Icon(icons.ui.settings), Widget.Label("Network")],
+//       }),
+//     }),
+//   ],
+// });

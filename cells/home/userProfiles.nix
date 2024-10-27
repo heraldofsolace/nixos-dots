@@ -34,7 +34,7 @@
       less
       navi
       nushell
-      # sagemath
+      sagemath
     ];
 
     develop = [
@@ -42,6 +42,7 @@
       dev.k8s
       dev.terraform
       dev.build-systems
+      dev.arduino
     ];
 
     develop-langs = [
@@ -70,6 +71,7 @@
     gui-apps = [
       browsers.firefox
       browsers.brave
+      browsers.google-chrome
       comms.chat
       desktop.kdeconnect
       desktop.theme
@@ -115,6 +117,7 @@ in {
         audio
         keyboards
         inputs.aniVim.homeModule
+        inputs.hyprland.homeManagerModules.default
       ];
   };
   minimal = {...}: {

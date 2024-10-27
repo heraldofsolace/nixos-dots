@@ -19,7 +19,6 @@ in {
     profiles.security.sudo
     profiles.services.postgres
     profiles.services.virtualbox
-    inputs.grub2-themes.nixosModules.default
     ./_hardware-configuration.nix
     inputs.stylix.nixosModules.stylix
     profiles.desktop.colors
@@ -60,13 +59,6 @@ in {
   boot.loader.grub.enableCryptodisk = true;
   boot.loader.grub.efiInstallAsRemovable = true;
   boot.loader.grub.device = "nodev";
-
-  boot.loader.grub2-theme = {
-    enable = true;
-    theme = "tela";
-    screen = "2k";
-    footer = true;
-  };
 
   environment.variables = {
     EDITOR = "vim";

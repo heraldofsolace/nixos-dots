@@ -108,7 +108,7 @@ const variables = () => [
 
 async function resetCss() {
   if (!dependencies("sass", "fd")) return;
-
+  print(dark.bg.value);
   try {
     const vars = `${TMP}/variables.scss`;
     const scss = `${TMP}/main.scss`;

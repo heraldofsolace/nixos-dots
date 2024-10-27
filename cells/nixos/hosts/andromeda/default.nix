@@ -20,6 +20,7 @@ in {
     profiles.misc.op
     profiles.misc.openrgb
     profiles.networking.common
+    profiles.networking.vpn
     profiles.networking.samba
     profiles.networking.tailscale
     profiles.security.sudo
@@ -66,6 +67,10 @@ in {
         directories = [
           "/etc/nix"
           "/etc/pipewire"
+          "/var/log"
+          "/var/lib/bluetooth"
+          "/var/lib/nixos"
+          "/var/lib/systemd/coredump"
           "/root"
         ];
         files = [

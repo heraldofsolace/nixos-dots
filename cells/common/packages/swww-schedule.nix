@@ -22,13 +22,23 @@ writeShellApplication {
       this=$(echo "''${sorted[val]}" | cut -d';' -f2)
       img=$(echo "''${sorted[val]}" | cut -d';' -f1)
 
-      echo "swww img $img" | at "$this"
+      echo "swww img $img --transition-type center" | at "$this"
+    done
+
+    for val in "''${!sorted[@]}"; do
+      this=$(echo "''${sorted[val]}" | cut -d';' -f2)
+      img=$(echo "''${sorted[val]}" | cut -d';' -f1)
+
+      if [[ $val -eq $((''${#sorted[@]} - 1)) ]]; then
+        echo "Last element"
+        break
+      fi
       next=$(echo "''${sorted[$((val + 1))]}" | cut -d';' -f2)
       if [[ ! "$curr" < "$this" ]] && [[ "$curr" < "$next" ]];
       then
         echo "''${sorted[val]} will be used"
         found=1
-        swww img "$img"
+        swww img "$img" --transition-type center
         break
       fi
     done
@@ -39,14 +49,14 @@ writeShellApplication {
       # Either before the first or after the last
       if [[ "$curr" < "$(echo "''${sorted[0]}" | cut -d';' -f2)" ]]; then
         echo "Before the first"
-        img=$(echo "''${sorted[-1]}" | cut -d';' -f1)
-        echo "Setting $img"
-        swww img "$img"
-      else
-        echo "After the last"
         img=$(echo "''${sorted[0]}" | cut -d';' -f1)
         echo "Setting $img"
-        swww img "$img"
+        swww img "$img" --transition-type center
+      else
+        echo "After the last"
+        img=$(echo "''${sorted[-1]}" | cut -d';' -f1)
+        echo "Setting $img"
+        swww img "$img" --transition-type center
       fi
     fi
   '';

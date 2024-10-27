@@ -28,7 +28,7 @@ in
     pname = "sirilic";
     version = "1.15.9";
 
-    propagatedBuildInputs = [wxpython requests];
+    propagatedBuildInputs = [python3Packages.wxpython requests];
     doCheck = false;
     nativeBuildInputs = [wrapGAppsHook];
 

@@ -5,24 +5,24 @@
 )
 
 (defsrc
-esc 9 3 1 5 7 min     eql 6 2 0 4 8 bspc
-caps w f m p v [         ] / . q ' z
-    r s n t b           \ a e i h j
-lsft lalt lctrl         rsft ralt rctrl
-    x c l d g           u o y k
-        tab spc ret grv
+esc 9 3 1 5 7       6 2 0 4 8 bspc
+caps w f m p v =     ;   / . q ' z
+    r s n t b           , a e i h j
+ lalt lsft lctrl          ralt rsft rctrl
+    x c l d g           - u o y k
+        tab spc ret grv [ ]
 
 )
 
 ;; Default layout
 
 (deflayer default
-esc 9 3 1 5 7 @chmin     eql 6 2 0 4 8 bspc
-caps @chw @chf @chm @chp v [         ] / . @adq ' z
-    @chr @chs @chn @cht @adb           \ @cha @che @chi @chh j
-lsft lalt lctrl         rsft ralt rctrl
-    @chx @chc @chl @chd @chg           @chu @cho @chy @chk
-        tab spc ret grv
+esc 9 3 1 5 7      6 2 0 4 8 bspc
+caps @chw @chf @chm @chp v =        ; / . @adq ' z
+    @chr @chs @chn @cht @adb        , @cha @che @chi @chh j
+lalt lsft  lctrl                          ralt rsft rctrl
+    @chx @chc @chl @chd @chg       @chmin @chu @cho @chy @chk
+        tab spc ret grv [ ]
 )
 
 (defalias

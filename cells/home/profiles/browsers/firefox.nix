@@ -24,7 +24,6 @@ _: {pkgs, ...}: {
         sponsorblock
         ublock-origin
         umatrix
-        dictionaries
         enhancer-for-youtube
         firenvim
         french-dictionary
